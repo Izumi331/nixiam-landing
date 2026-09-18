@@ -1,0 +1,56 @@
+<!DOCTYPE html>
+<html lang="fr">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Page introuvable — Nixiam</title>
+<meta name="robots" content="noindex">
+<link rel="icon" type="image/svg+xml" href="/favicon.svg">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Space+Grotesk:wght@500;600;700&family=Inter:wght@400;500;600;700&display=swap" rel="stylesheet">
+<style>
+  *{box-sizing:border-box; margin:0; padding:0;}
+  body{
+    font-family:'Inter',sans-serif; color:#2E2C36; background:#F7F6FA;
+    display:flex; flex-direction:column; min-height:100vh;
+  }
+  main{
+    flex:1; display:flex; flex-direction:column; align-items:center; justify-content:center;
+    text-align:center; padding:80px 24px;
+  }
+  .code{
+    font-family:'Space Grotesk',sans-serif; font-weight:700; font-size:clamp(64px,12vw,120px);
+    color:#4E366A; line-height:1; letter-spacing:-0.02em;
+  }
+  h1{
+    font-family:'Space Grotesk',sans-serif; font-weight:600; font-size:22px;
+    color:#241634; margin-top:12px;
+  }
+  p{font-size:15px; color:#6B6577; margin-top:10px; max-width:420px;}
+  .actions{margin-top:28px; display:flex; gap:14px; flex-wrap:wrap; justify-content:center;}
+  .btn{
+    font-family:'Inter',sans-serif; font-weight:600; font-size:14.5px;
+    padding:12px 22px; border-radius:8px; text-decoration:none; transition:transform .15s ease;
+  }
+  .btn:hover{transform:translateY(-1px);}
+  .btn-primary{background:#0F7A6E; color:#fff;}
+  .btn-ghost{border:1px solid #E3E1E9; color:#2E2C36; background:#fff;}
+</style>
+</head>
+<body>
+<!--#include virtual="/header.html" -->
+
+<main>
+  <div class="code">404</div>
+  <h1>Cette page n'existe pas — ou plus.</h1>
+  <p>Le lien que vous avez suivi est peut-être obsolète. Voici comment retrouver votre chemin.</p>
+  <div class="actions">
+    <a href="/" class="btn btn-primary">Retour à l'accueil</a>
+    <a href="/contact.html" class="btn btn-ghost">Nous contacter</a>
+  </div>
+</main>
+
+<!--#include virtual="/footer.html" -->
+</body>
+</html>
