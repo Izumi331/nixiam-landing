@@ -196,6 +196,8 @@
   });
 
   const regle321Input = document.getElementById('regle321');
+  // Réponse au quiz 3-2-1 de l'accueil, transmise via ?regle321=...
+  regle321Input.value = new URLSearchParams(window.location.search).get('regle321') || '';
   // ---- form submit -> persist as shared lead ----
   const form = document.getElementById('leadForm');
   const formCard = document.getElementById('formCard');

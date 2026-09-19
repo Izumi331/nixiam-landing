@@ -173,48 +173,12 @@
   .form-section{background:var(--indigo); color:#fff;}
   .form-section .section-head h2{color:#fff;}
   .form-section .section-head p{color:var(--lavande);}
-  .form-card{
-    background:#fff; border-radius:16px; padding:40px; color:var(--gris-fonce);
-    max-width:680px;
-  }
-  .form-grid{display:grid; grid-template-columns:1fr 1fr; gap:18px;}
-  .field{display:flex; flex-direction:column; gap:6px;}
-  .field.full{grid-column:1/-1;}
-  .field label{font-size:13px; font-weight:600; color:var(--gris-fonce);}
-  .field input, .field select{
-    font-family:'Inter',sans-serif; font-size:14.5px;
-    padding:11px 13px; border-radius:7px; border:1px solid var(--gris-clair);
-    background:var(--blanc); color:var(--gris-fonce);
-  }
-  .field input:focus, .field select:focus{
-    outline:2px solid var(--vert); outline-offset:1px; border-color:var(--vert);
-  }
-  .radio-group{display:flex; flex-wrap:wrap; gap:8px;}
-  .radio-chip{
-    font-size:13px; padding:8px 14px; border-radius:99px; border:1px solid var(--gris-clair);
-    cursor:pointer; background:var(--blanc); color:var(--gris-moyen); user-select:none;
-  }
-  .radio-chip input{position:absolute; opacity:0; pointer-events:none;}
-  .radio-chip.checked{border-color:var(--vert-fonce); background:#E9F6F4; color:var(--vert-fonce); font-weight:600;}
-  .submit-row{margin-top:26px; display:flex; align-items:center; gap:16px;}
-  .form-note{font-size:12.5px; color:var(--gris-moyen); margin-top:14px;}
-  .success{
-    display:none; text-align:center; padding:40px 20px;
-  }
-  .success.show{display:block;}
-  .success .check{
-    width:56px; height:56px; border-radius:50%; background:var(--vert-fonce);
-    color:#fff; font-size:26px; display:flex; align-items:center; justify-content:center;
-    margin:0 auto 18px;
-  }
-  .form-card.hidden{display:none;}
+  .btn-lg{font-size:17px; padding:18px 36px; border-radius:10px;}
 
   @media (max-width:760px){
     .pain-grid{grid-template-columns:1fr;}
     .rule-wrap{grid-template-columns:1fr;}
     .offer-grid{grid-template-columns:1fr;}
-    .form-grid{grid-template-columns:1fr;}
-    .form-card{padding:26px;}
     section{padding:64px 0;}
   }
   @media (prefers-reduced-motion:reduce){
@@ -308,7 +272,7 @@
           <button type="button" class="quiz-opt" data-val="non">Je ne suis pas sûr·e de ce qu'on fait réellement</button>
           <button type="button" class="quiz-opt" data-val="connait-pas">Je découvre cette règle à l'instant</button>
         </div>
-        <p class="quiz-feedback" id="quizFeedback">Merci — cette réponse sera reprise automatiquement dans le formulaire ci-dessous.</p>
+        <p class="quiz-feedback" id="quizFeedback">Merci — cette réponse sera reprise automatiquement dans le formulaire de contact.</p>
       </div>
     </div>
   </div>
@@ -347,7 +311,7 @@
   </div>
 </section>
 
-<!-- ================= FORM ================= -->
+<!-- ================= CTA CONTACT ================= -->
 <section class="form-section" id="form">
   <div class="container">
     <div class="section-head">
@@ -355,66 +319,16 @@
       <h2>Où en est votre sauvegarde aujourd'hui&nbsp;?</h2>
       <p>Pas de démarchage agressif. On veut surtout comprendre votre situation réelle — et vous dire franchement si Nixiam peut vous aider ou pas.</p>
     </div>
-
-    <div class="form-card" id="formCard">
-      <form id="leadForm">
-        <div class="form-grid">
-          <div class="field full">
-            <label for="entreprise">Entreprise</label>
-            <input type="text" id="entreprise" name="entreprise" required placeholder="Nom de votre entreprise">
-          </div>
-          <div class="field">
-            <label for="taille">Nombre de postes / utilisateurs</label>
-            <select id="taille" name="taille" required>
-              <option value="" disabled selected>Choisir…</option>
-              <option>1 à 10</option>
-              <option>11 à 25</option>
-              <option>26 à 50</option>
-              <option>51 à 100</option>
-              <option>Plus de 100</option>
-            </select>
-          </div>
-          <div class="field">
-            <label for="secteur">Secteur d'activité</label>
-            <input type="text" id="secteur" name="secteur" placeholder="Ex. cabinet comptable, BTP…">
-          </div>
-          <div class="field full">
-            <label>Solution de sauvegarde actuelle</label>
-            <div class="radio-group" data-name="solution">
-              <label class="radio-chip"><input type="radio" name="solution" value="Aucune sauvegarde connue"> Aucune sauvegarde connue</label>
-              <label class="radio-chip"><input type="radio" name="solution" value="Sauvegarde locale uniquement"> Sauvegarde locale uniquement</label>
-              <label class="radio-chip"><input type="radio" name="solution" value="Solution cloud, jamais testée"> Solution cloud, jamais testée</label>
-              <label class="radio-chip"><input type="radio" name="solution" value="Solution cloud testée régulièrement"> Solution cloud testée régulièrement</label>
-            </div>
-          </div>
-          <div class="field full">
-            <label for="email">Email</label>
-            <input type="email" id="email" name="email" required placeholder="vous@entreprise.fr">
-          </div>
-        </div>
-        <input type="hidden" id="regle321" name="regle321" value="">
-        <div class="submit-row">
-          <button type="submit" class="btn btn-primary">Être recontacté·e</button>
-        </div>
-        <p class="form-note">Aucune sollicitation commerciale sans votre accord explicite. Vos réponses nous servent uniquement à comprendre les besoins réels des PME avant de finaliser notre offre.</p>
-      </form>
-    </div>
-    <div class="success" id="successCard">
-      <div class="check">✓</div>
-      <h3 style="color:#fff;">Merci, c'est noté.</h3>
-      <p style="color:var(--lavande); margin-top:8px;">On revient vers vous rapidement — et si notre offre ne correspond pas à votre situation, on vous le dira aussi honnêtement.</p>
-    </div>
+    <a href="/contact.html" id="ctaContact" class="btn btn-primary btn-lg">Remplir le formulaire — 2 minutes</a>
   </div>
 </section>
 
 <!--#include virtual="/footer.html" -->
 
 <script>
-  // ---- Config : URL de votre serveur de leads (voir nixiam-lead-server/README.md) ----
-  // Tant que ceci n'est pas modifié, les envois du formulaire échoueront silencieusement
-  // (l'utilisateur verra quand même un message de succès rassurant, mais RIEN ne sera enregistré).
+  // ---- Config : URL du serveur de leads, utilisée uniquement par la vue admin (?admin=1) ----
+  // Le formulaire de contact (et son envoi) vit dans contact.html.
   const API_URL = "https://leads.nixiam.fr/api/leads";
-  const API_KEY_PLACEHOLDER = "REMPLACER_PAR_VOTRE_ADMIN_KEY"; // uniquement pour la vue ?admin=1
 
   // ---- generative dot field for hero (static seeded pattern, respects reduced motion) ----
   (function(){
@@ -437,70 +351,16 @@
     }
   })();
 
-  // ---- radio chip styling ----
-  document.querySelectorAll('.radio-group').forEach(group=>{
-    group.querySelectorAll('.radio-chip').forEach(chip=>{
-      chip.addEventListener('click', ()=>{
-        group.querySelectorAll('.radio-chip').forEach(c=>c.classList.remove('checked'));
-        chip.classList.add('checked');
-      });
-    });
-  });
-
-  // ---- 3-2-1 quiz ----
+  // ---- 3-2-1 quiz : la réponse est transmise à /contact.html via l'URL du bouton CTA ----
   const quizFeedback = document.getElementById('quizFeedback');
-  const regle321Input = document.getElementById('regle321');
+  const ctaContact = document.getElementById('ctaContact');
   document.querySelectorAll('.quiz-opt').forEach(btn=>{
     btn.addEventListener('click', ()=>{
       document.querySelectorAll('.quiz-opt').forEach(b=>b.classList.remove('selected'));
       btn.classList.add('selected');
-      regle321Input.value = btn.textContent.trim();
+      ctaContact.href = '/contact.html?regle321=' + encodeURIComponent(btn.textContent.trim());
       quizFeedback.classList.add('show');
     });
-  });
-
-  // ---- form submit -> persist as shared lead ----
-  const form = document.getElementById('leadForm');
-  const formCard = document.getElementById('formCard');
-  const successCard = document.getElementById('successCard');
-
-  form.addEventListener('submit', async (e)=>{
-    e.preventDefault();
-    const btn = form.querySelector('button[type="submit"]');
-    btn.disabled = true;
-    btn.textContent = 'Envoi…';
-
-    const data = {
-      entreprise: document.getElementById('entreprise').value,
-      taille: document.getElementById('taille').value,
-      secteur: document.getElementById('secteur').value,
-      solution: (form.querySelector('input[name="solution"]:checked') || {}).value || 'Non renseigné',
-      regle321: regle321Input.value || 'Non renseigné',
-      email: document.getElementById('email').value,
-    };
-
-    try{
-      const res = await fetch(API_URL, {
-        method: 'POST',
-        headers: { 'Content-Type': 'application/json' },
-        body: JSON.stringify(data),
-      });
-      if(!res.ok) throw new Error('HTTP ' + res.status);
-      formCard.classList.add('hidden');
-      successCard.classList.add('show');
-    }catch(err){
-      console.error('Submit error', err);
-      btn.disabled = false;
-      btn.textContent = 'Être recontacté·e';
-      let errBox = document.getElementById('submitError');
-      if(!errBox){
-        errBox = document.createElement('p');
-        errBox.id = 'submitError';
-        errBox.style.cssText = 'margin-top:14px;color:#C2413F;font-size:13.5px;';
-        form.appendChild(errBox);
-      }
-      errBox.textContent = "L'envoi a échoué — vérifiez votre connexion et réessayez, ou écrivez-nous directement.";
-    }
   });
 
   // ---- simple admin view: append ?admin=1 to the URL ----
