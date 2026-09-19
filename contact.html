@@ -116,6 +116,10 @@
     margin:0 auto 18px;
   }
   .form-card.hidden{display:none;}
+  .hp-field{position:absolute; left:-10000px; top:auto; width:1px; height:1px; overflow:hidden;}
+  .field-error{display:none; margin-top:6px; font-size:13px; color:#C2413F;}
+  .field-error.show{display:block;}
+  .field input[aria-invalid="true"]{border-color:#C2413F;}
 
 
   @media (max-width:760px){
@@ -172,8 +176,13 @@
           </div>
           <div class="field full">
             <label for="email">Email</label>
-            <input type="email" id="email" name="email" required placeholder="vous@entreprise.fr">
+            <input type="email" id="email" name="email" required placeholder="vous@entreprise.fr" pattern="[^@\s]+@[^@\s]+\.[^@\s]{2,}" aria-describedby="emailError">
+            <p class="field-error" id="emailError" role="alert">Adresse email invalide. Vérifiez le format, par exemple : vous@entreprise.fr</p>
           </div>
+        </div>
+        <div class="hp-field" aria-hidden="true">
+          <label for="website">Laissez ce champ vide</label>
+          <input type="text" id="website" name="website" tabindex="-1" autocomplete="off" value="">
         </div>
         <input type="hidden" id="regle321" name="regle321" value="">
         <div class="submit-row">
@@ -213,8 +222,23 @@
   const formCard = document.getElementById('formCard');
   const successCard = document.getElementById('successCard');
 
+  const emailInput = document.getElementById('email');
+  const emailError = document.getElementById('emailError');
+  const EMAIL_RE = /^[^@\s]+@[^@\s]+\.[^@\s]{2,}$/;
+
+  function checkEmail(){
+    const ok = EMAIL_RE.test(emailInput.value.trim());
+    emailError.classList.toggle('show', !ok);
+    emailInput.setAttribute('aria-invalid', ok ? 'false' : 'true');
+    return ok;
+  }
+  // Le navigateur bloque l'envoi natif : on affiche notre message visible à la place de la bulle seule.
+  emailInput.addEventListener('invalid', checkEmail);
+  emailInput.addEventListener('input', ()=>{ if(emailInput.getAttribute('aria-invalid') === 'true') checkEmail(); });
+
   form.addEventListener('submit', async (e)=>{
     e.preventDefault();
+    if(!checkEmail()){ emailInput.focus(); return; }
     const btn = form.querySelector('button[type="submit"]');
     btn.disabled = true;
     btn.textContent = 'Envoi…';
@@ -225,7 +249,8 @@
       secteur: document.getElementById('secteur').value,
       solution: (form.querySelector('input[name="solution"]:checked') || {}).value || 'Non renseigné',
       regle321: regle321Input.value || 'Non renseigné',
-      email: document.getElementById('email').value,
+      email: emailInput.value.trim(),
+      website: document.getElementById('website').value,
     };
 
     try{
