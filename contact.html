@@ -1,0 +1,245 @@
+<!DOCTYPE html>
+<html lang="fr">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Contact — Nixiam</title>
+<meta name="description" content="Contactez Nixiam : décrivez votre situation de sauvegarde en 2 minutes et nous revenons vers vous rapidement, sans démarchage agressif.">
+<link rel="icon" type="image/svg+xml" href="/favicon.svg">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Space+Grotesk:wght@500;600;700&family=Inter:wght@400;500;600;700&display=swap" rel="stylesheet">
+<style>
+  :root{
+    --violet:#4E366A;
+    --indigo:#241634;
+    --lavande:#EADEF5;
+    --mauve:#8E7EC8;
+    --ardoise:#48566B;
+    --vert-fonce:#0F7A6E;
+    --vert:#12A594;
+    --menthe:#3ED6C0;
+    --corail:#C2413F;
+    --blanc:#F7F6FA;
+    --gris-clair:#E3E1E9;
+    --gris-moyen:#6B6577;
+    --gris-fonce:#2E2C36;
+  }
+  *{box-sizing:border-box; margin:0; padding:0;}
+  html{scroll-behavior:smooth;}
+  body{
+    font-family:'Inter',sans-serif;
+    color:var(--gris-fonce);
+    background:var(--blanc);
+    line-height:1.6;
+    -webkit-font-smoothing:antialiased;
+  }
+  h1,h2,h3,.display{
+    font-family:'Space Grotesk',sans-serif;
+    font-weight:600;
+    letter-spacing:-0.01em;
+  }
+  a{color:inherit;}
+  img,svg{display:block; max-width:100%;}
+  .container{max-width:1080px; margin:0 auto; padding:0 24px;}
+  .eyebrow{
+    font-size:12px; font-weight:600; letter-spacing:0.14em; text-transform:uppercase;
+    color:var(--vert);
+  }
+
+  .btn{
+    display:inline-flex; align-items:center; gap:8px;
+    font-family:'Inter',sans-serif; font-weight:600; font-size:15px;
+    padding:14px 26px; border-radius:8px;
+    border:1px solid transparent;
+    cursor:pointer;
+    text-decoration:none;
+    transition:transform .15s ease, background .15s ease, box-shadow .15s ease;
+  }
+  .btn:focus-visible{outline:2px solid var(--menthe); outline-offset:3px;}
+  .btn-primary{background:var(--vert-fonce); color:#fff;}
+  .btn-primary:hover{background:var(--vert); transform:translateY(-1px);}
+  .btn-ghost{border-color:rgba(255,255,255,0.35); color:#fff;}
+  .btn-ghost:hover{background:rgba(255,255,255,0.08);}
+
+  /* ---------- PAGE ---------- */
+  .contact-page{padding:72px 0 96px;}
+  .section-head{max-width:640px; margin-bottom:48px;}
+  .section-head h1{font-size:clamp(28px,4vw,40px); margin-top:10px;}
+  .section-head p{margin-top:14px; font-size:16px;}
+  /* ---------- FORM ---------- */
+  .form-section{background:var(--indigo); color:#fff;}
+  .form-section .section-head h1{color:#fff;}
+  .form-section .section-head p{color:var(--lavande);}
+  .form-card{
+    background:#fff; border-radius:16px; padding:40px; color:var(--gris-fonce);
+    max-width:680px;
+  }
+  .form-grid{display:grid; grid-template-columns:1fr 1fr; gap:18px;}
+  .field{display:flex; flex-direction:column; gap:6px;}
+  .field.full{grid-column:1/-1;}
+  .field label{font-size:13px; font-weight:600; color:var(--gris-fonce);}
+  .field input, .field select{
+    font-family:'Inter',sans-serif; font-size:14.5px;
+    padding:11px 13px; border-radius:7px; border:1px solid var(--gris-clair);
+    background:var(--blanc); color:var(--gris-fonce);
+  }
+  .field input:focus, .field select:focus{
+    outline:2px solid var(--vert); outline-offset:1px; border-color:var(--vert);
+  }
+  .radio-group{display:flex; flex-wrap:wrap; gap:8px;}
+  .radio-chip{
+    font-size:13px; padding:8px 14px; border-radius:99px; border:1px solid var(--gris-clair);
+    cursor:pointer; background:var(--blanc); color:var(--gris-moyen); user-select:none;
+  }
+  .radio-chip input{position:absolute; opacity:0; pointer-events:none;}
+  .radio-chip.checked{border-color:var(--vert-fonce); background:#E9F6F4; color:var(--vert-fonce); font-weight:600;}
+  .submit-row{margin-top:26px; display:flex; align-items:center; gap:16px;}
+  .form-note{font-size:12.5px; color:var(--gris-moyen); margin-top:14px;}
+  .success{
+    display:none; text-align:center; padding:40px 20px;
+  }
+  .success.show{display:block;}
+  .success .check{
+    width:56px; height:56px; border-radius:50%; background:var(--vert-fonce);
+    color:#fff; font-size:26px; display:flex; align-items:center; justify-content:center;
+    margin:0 auto 18px;
+  }
+  .form-card.hidden{display:none;}
+
+
+  @media (max-width:760px){
+    .form-grid{grid-template-columns:1fr;}
+    .form-card{padding:26px;}
+    .contact-page{padding:48px 0 64px;}
+  }
+  @media (prefers-reduced-motion:reduce){
+    *{animation:none !important; transition:none !important;}
+  }
+</style>
+</head>
+<body>
+<!--#include virtual="/header.html" -->
+
+<main class="form-section contact-page" id="form">
+  <div class="container">
+    <div class="section-head">
+      <span class="eyebrow">Contact</span>
+      <h1>Parlons de votre sauvegarde</h1>
+      <p>Dites-nous où vous en êtes : en 2 minutes, on comprend votre situation réelle et on revient vers vous rapidement. Pas de démarchage agressif — et si Nixiam ne peut pas vous aider, on vous le dira franchement.</p>
+    </div>
+
+    <div class="form-card" id="formCard">
+      <form id="leadForm">
+        <div class="form-grid">
+          <div class="field full">
+            <label for="entreprise">Entreprise</label>
+            <input type="text" id="entreprise" name="entreprise" required placeholder="Nom de votre entreprise">
+          </div>
+          <div class="field">
+            <label for="taille">Nombre de postes / utilisateurs</label>
+            <select id="taille" name="taille" required>
+              <option value="" disabled selected>Choisir…</option>
+              <option>1 à 10</option>
+              <option>11 à 25</option>
+              <option>26 à 50</option>
+              <option>51 à 100</option>
+              <option>Plus de 100</option>
+            </select>
+          </div>
+          <div class="field">
+            <label for="secteur">Secteur d'activité</label>
+            <input type="text" id="secteur" name="secteur" placeholder="Ex. cabinet comptable, BTP…">
+          </div>
+          <div class="field full">
+            <label>Solution de sauvegarde actuelle</label>
+            <div class="radio-group" data-name="solution">
+              <label class="radio-chip"><input type="radio" name="solution" value="Aucune sauvegarde connue"> Aucune sauvegarde connue</label>
+              <label class="radio-chip"><input type="radio" name="solution" value="Sauvegarde locale uniquement"> Sauvegarde locale uniquement</label>
+              <label class="radio-chip"><input type="radio" name="solution" value="Solution cloud, jamais testée"> Solution cloud, jamais testée</label>
+              <label class="radio-chip"><input type="radio" name="solution" value="Solution cloud testée régulièrement"> Solution cloud testée régulièrement</label>
+            </div>
+          </div>
+          <div class="field full">
+            <label for="email">Email</label>
+            <input type="email" id="email" name="email" required placeholder="vous@entreprise.fr">
+          </div>
+        </div>
+        <input type="hidden" id="regle321" name="regle321" value="">
+        <div class="submit-row">
+          <button type="submit" class="btn btn-primary">Être recontacté·e</button>
+        </div>
+        <p class="form-note">Aucune sollicitation commerciale sans votre accord explicite. Vos réponses nous servent uniquement à comprendre les besoins réels des PME avant de finaliser notre offre.</p>
+      </form>
+    </div>
+    <div class="success" id="successCard">
+      <div class="check">✓</div>
+      <h3 style="color:#fff;">Merci, c'est noté.</h3>
+      <p style="color:var(--lavande); margin-top:8px;">On revient vers vous rapidement — et si notre offre ne correspond pas à votre situation, on vous le dira aussi honnêtement.</p>
+    </div>
+  </div>
+</main>
+
+<!--#include virtual="/footer.html" -->
+
+<script>
+  const API_URL = "https://leads.nixiam.fr/api/leads";
+
+  // ---- radio chip styling ----
+  document.querySelectorAll('.radio-group').forEach(group=>{
+    group.querySelectorAll('.radio-chip').forEach(chip=>{
+      chip.addEventListener('click', ()=>{
+        group.querySelectorAll('.radio-chip').forEach(c=>c.classList.remove('checked'));
+        chip.classList.add('checked');
+      });
+    });
+  });
+
+  const regle321Input = document.getElementById('regle321');
+  // ---- form submit -> persist as shared lead ----
+  const form = document.getElementById('leadForm');
+  const formCard = document.getElementById('formCard');
+  const successCard = document.getElementById('successCard');
+
+  form.addEventListener('submit', async (e)=>{
+    e.preventDefault();
+    const btn = form.querySelector('button[type="submit"]');
+    btn.disabled = true;
+    btn.textContent = 'Envoi…';
+
+    const data = {
+      entreprise: document.getElementById('entreprise').value,
+      taille: document.getElementById('taille').value,
+      secteur: document.getElementById('secteur').value,
+      solution: (form.querySelector('input[name="solution"]:checked') || {}).value || 'Non renseigné',
+      regle321: regle321Input.value || 'Non renseigné',
+      email: document.getElementById('email').value,
+    };
+
+    try{
+      const res = await fetch(API_URL, {
+        method: 'POST',
+        headers: { 'Content-Type': 'application/json' },
+        body: JSON.stringify(data),
+      });
+      if(!res.ok) throw new Error('HTTP ' + res.status);
+      formCard.classList.add('hidden');
+      successCard.classList.add('show');
+    }catch(err){
+      console.error('Submit error', err);
+      btn.disabled = false;
+      btn.textContent = 'Être recontacté·e';
+      let errBox = document.getElementById('submitError');
+      if(!errBox){
+        errBox = document.createElement('p');
+        errBox.id = 'submitError';
+        errBox.style.cssText = 'margin-top:14px;color:#C2413F;font-size:13.5px;';
+        form.appendChild(errBox);
+      }
+      errBox.textContent = "L'envoi a échoué — vérifiez votre connexion et réessayez, ou écrivez-nous directement.";
+    }
+  });
+</script>
+
+</body>
+</html>
