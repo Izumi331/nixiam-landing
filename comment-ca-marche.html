@@ -51,14 +51,10 @@
   }
   a{color:inherit;}
   .container{max-width:1080px; margin:0 auto; padding:0 24px;}
-  .eyebrow{
-    font-size:12px; font-weight:600; letter-spacing:0.14em; text-transform:uppercase;
-    color:var(--vert);
-  }
   section{padding:88px 0;}
   .section-head{max-width:680px; margin-bottom:48px;}
-  .section-head h1{font-size:clamp(30px,4.4vw,44px); margin-top:10px;}
-  .section-head h2{font-size:clamp(26px,3.4vw,34px); margin-top:10px;}
+  .section-head h1{font-size:clamp(30px,4.4vw,44px);}
+  .section-head h2{font-size:clamp(26px,3.4vw,34px);}
   .section-head p{margin-top:14px; font-size:16.5px; color:var(--ardoise);}
 
   .btn{
@@ -80,16 +76,20 @@
   .page-hero .section-head p{color:var(--lavande);}
 
   /* ---------- CARDS ---------- */
-  .card-grid{display:grid; grid-template-columns:repeat(4,1fr); gap:20px;}
-  .card{
-    background:#fff; border:1px solid var(--gris-clair); border-radius:14px; padding:26px;
+  .steps{position:relative; display:grid; grid-template-columns:repeat(4,1fr); gap:20px; list-style:none;}
+  .steps::before, .rule-list::before{
+    content:""; position:absolute; top:27px; left:12.5%; right:12.5%;
+    height:2px; background:var(--violet); opacity:0.35;
   }
-  .card .num{
-    font-family:'Space Grotesk',sans-serif; font-size:13px; font-weight:600;
-    color:var(--vert-fonce); letter-spacing:0.08em;
+  .step{position:relative; text-align:center;}
+  .step .num{
+    width:56px; height:56px; margin:0 auto; border-radius:50%;
+    background:var(--violet); color:#fff; box-shadow:0 0 0 6px var(--blanc);
+    display:flex; align-items:center; justify-content:center;
+    font-family:'Space Grotesk',sans-serif; font-size:20px; font-weight:700;
   }
-  .card h3{font-size:19px; color:var(--indigo); margin:8px 0 8px;}
-  .card p{font-size:14.5px; color:var(--ardoise);}
+  .step h3{font-size:19px; color:var(--indigo); margin:16px 0 8px;}
+  .step p{font-size:14.5px; color:var(--ardoise);}
   .note{
     margin-top:32px; max-width:680px; padding:18px 22px; border-radius:10px;
     background:var(--lavande); color:var(--indigo); font-size:15px;
@@ -97,19 +97,17 @@
 
   /* ---------- 3-2-1 ---------- */
   .rule-section{background:#fff;}
-  .rule-list{display:grid; gap:16px; max-width:760px;}
-  .rule-row{
-    display:flex; gap:20px; align-items:flex-start;
-    background:var(--blanc); border:1px solid var(--gris-clair); border-radius:14px; padding:22px 24px;
-  }
+  .rule-list{position:relative; display:grid; grid-template-columns:repeat(3,1fr); gap:24px;}
+  .rule-list::before{left:calc(100%/6); right:calc(100%/6);}
+  .rule-row{position:relative; text-align:center;}
   .rule-badge{
-    flex:none; width:52px; height:52px; border-radius:12px;
-    background:var(--violet); color:#fff;
-    font-family:'Space Grotesk',sans-serif; font-size:26px; font-weight:700;
+    width:56px; height:56px; margin:0 auto 16px; border-radius:50%;
+    background:var(--violet); color:#fff; box-shadow:0 0 0 6px #fff;
+    font-family:'Space Grotesk',sans-serif; font-size:22px; font-weight:700;
     display:flex; align-items:center; justify-content:center;
   }
   .rule-row strong{display:block; font-size:17px; color:var(--indigo); font-family:'Space Grotesk',sans-serif;}
-  .rule-row span{display:block; margin-top:4px; font-size:15px; color:var(--ardoise);}
+  .rule-row span{display:block; margin-top:6px; font-size:15px; color:var(--ardoise);}
 
   /* ---------- DIFFERENCE ---------- */
   .diff-section{background:var(--indigo); color:#fff;}
@@ -131,14 +129,16 @@
   .cta-section .section-head{margin-bottom:28px;}
 
   @media (max-width:900px){
-    .card-grid{grid-template-columns:1fr 1fr;}
+    .steps{grid-template-columns:1fr 1fr; row-gap:36px;}
+    .steps::before{display:none;}
     .diff-grid{grid-template-columns:1fr;}
   }
   @media (max-width:760px){
     section{padding:64px 0;}
     .page-hero{padding:56px 0 52px;}
-    .card-grid{grid-template-columns:1fr;}
-    .rule-row{padding:18px;}
+    .steps{grid-template-columns:1fr;}
+    .rule-list{grid-template-columns:1fr;}
+    .rule-list::before{display:none;}
   }
   @media (prefers-reduced-motion:reduce){
     html{scroll-behavior:auto;}
@@ -154,7 +154,6 @@
   <div class="page-hero">
     <div class="container">
       <div class="section-head">
-        <span class="eyebrow">Comment ça marche</span>
         <h1>Une sauvegarde, c'est bien. Une restauration prouvée, c'est mieux.</h1>
         <p>Voici, sans jargon, ce que fait Nixiam, sur quoi reposent vos données et comment on vérifie que tout fonctionne le jour où vous en avez besoin.</p>
       </div>
@@ -165,32 +164,31 @@
   <section id="integrateur">
     <div class="container">
       <div class="section-head">
-        <span class="eyebrow">Notre rôle</span>
         <h2>Nixiam est intégrateur, pas hébergeur</h2>
         <p>Vos données ne sont pas stockées sur nos serveurs. Elles reposent sur l'infrastructure d'un éditeur partenaire, Acronis. Notre métier, c'est de faire en sorte que cela fonctionne pour vous.</p>
       </div>
-      <div class="card-grid">
-        <div class="card">
+      <ol class="steps">
+        <li class="step">
           <div class="num">01</div>
           <h3>Choisir</h3>
           <p>On sélectionne la solution adaptée à votre environnement : Microsoft 365, Google Workspace, serveurs ou postes.</p>
-        </div>
-        <div class="card">
+        </li>
+        <li class="step">
           <div class="num">02</div>
           <h3>Déployer</h3>
           <p>On installe et on configure. Vous n'avez pas à devenir spécialiste de l'outil.</p>
-        </div>
-        <div class="card">
+        </li>
+        <li class="step">
           <div class="num">03</div>
           <h3>Superviser</h3>
           <p>On suit l'état des sauvegardes. Un échec est traité par nous, pas découvert par vous six mois plus tard.</p>
-        </div>
-        <div class="card">
+        </li>
+        <li class="step">
           <div class="num">04</div>
           <h3>Restaurer</h3>
           <p>Le jour où il manque un fichier, une boîte mail ou un serveur, c'est nous que vous appelez.</p>
-        </div>
-      </div>
+        </li>
+      </ol>
       <p class="note">Un seul interlocuteur pour la sauvegarde : ni l'éditeur, ni votre prestataire IT, ni une équipe interne à qui on se renvoie la balle.</p>
     </div>
   </section>
@@ -199,7 +197,6 @@
   <section class="rule-section" id="regle-321">
     <div class="container">
       <div class="section-head">
-        <span class="eyebrow">La règle 3-2-1</span>
         <h2>Le standard de la sauvegarde, appliqué à votre cas</h2>
         <p>Trois chiffres à retenir. Ils définissent ce qu'est une stratégie de sauvegarde sérieuse. Voici ce qu'ils signifient dans notre offre.</p>
       </div>
@@ -225,7 +222,6 @@
   <section class="diff-section" id="difference">
     <div class="container">
       <div class="section-head">
-        <span class="eyebrow">Ce qui nous différencie</span>
         <h2>Une sauvegarde qui tourne n'est pas une sauvegarde qui marche</h2>
         <p>Beaucoup d'entreprises découvrent le problème au moment de restaurer. Chez nous, la restauration est testée à l'avance, et le résultat est écrit.</p>
       </div>
@@ -241,9 +237,9 @@
           <p>Ce qui a été restauré, comment, en combien de temps. Utile pour votre direction, votre assurance ou un audit.</p>
         </div>
         <div class="diff-card">
-          <div class="big">Toutes les 4 h</div>
-          <h3>Une perte de données limitée</h3>
-          <p>Offre Business : sauvegarde toutes les 4 heures, avec rétention illimitée. Offre Essentiel : sauvegarde quotidienne, rétention 1 an, rapport mensuel automatique.</p>
+          <div class="big">Illimitée</div>
+          <h3>Un historique conservé</h3>
+          <p>Offre Business : rétention illimitée. Offre Essentiel : sauvegarde quotidienne, rétention 1 an, rapport mensuel automatique.</p>
         </div>
       </div>
     </div>
@@ -253,7 +249,6 @@
   <section class="cta-section" id="contact">
     <div class="container">
       <div class="section-head">
-        <span class="eyebrow">2 minutes, honnêtement</span>
         <h2>Où en est votre sauvegarde aujourd'hui&nbsp;?</h2>
         <p>Dites-nous ce que vous avez en place. On vous répond franchement, y compris si Nixiam n'est pas la bonne solution pour vous.</p>
       </div>
