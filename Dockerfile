@@ -12,7 +12,10 @@ COPY nixiam-landing.html /usr/share/nginx/html/index.html
 COPY mentions-legales.html /usr/share/nginx/html/mentions-legales.html
 COPY politique-confidentialite.html /usr/share/nginx/html/politique-confidentialite.html
 COPY contact.html /usr/share/nginx/html/contact.html
+COPY comment-ca-marche.html /usr/share/nginx/html/comment-ca-marche.html
 COPY 404.html /usr/share/nginx/html/404.html
 
 # Autres assets
 COPY favicon.svg /usr/share/nginx/html/favicon.svg
+COPY robots.txt /usr/share/nginx/html/robots.txt
+COPY sitemap.xml /usr/share/nginx/html/sitemap.xml
