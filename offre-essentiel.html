@@ -111,16 +111,15 @@
     background:var(--lavande); color:var(--indigo); font-size:15px;
   }
 
-  /* ---------- FRAIS DE MISE EN SERVICE ---------- */
+  /* ---------- FRAIS DE MISE EN SERVICE (formule, pas un tableau) ---------- */
   .fees-section{background:#fff;}
-  table.fee-table{width:100%; border-collapse:collapse; max-width:640px; font-size:15px;}
-  table.fee-table th, table.fee-table td{padding:13px 16px; text-align:left; border-bottom:1px solid var(--gris-clair);}
-  table.fee-table thead th{
-    font-family:'Space Grotesk',sans-serif; font-size:13px; font-weight:600;
-    color:var(--violet); background:var(--lavande);
-  }
-  table.fee-table thead th:first-child{border-top-left-radius:10px;}
-  table.fee-table thead th:last-child{border-top-right-radius:10px;}
+  .fee-formula-list{list-style:none; display:flex; flex-direction:column; max-width:640px;}
+  .fee-formula-item{padding:20px 0; border-bottom:1px solid var(--gris-clair);}
+  .fee-formula-item:first-child{border-top:1px solid var(--gris-clair);}
+  .fee-formula-head{display:flex; justify-content:space-between; align-items:baseline; gap:16px; flex-wrap:wrap;}
+  .fee-tier{font-family:'Space Grotesk',sans-serif; font-weight:600; font-size:15px; color:var(--indigo);}
+  .fee-formula{font-family:'Space Grotesk',sans-serif; font-weight:600; font-size:15px; color:var(--violet); white-space:nowrap;}
+  .fee-examples{margin-top:6px; font-size:13.5px; color:var(--gris-moyen);}
 
   /* ---------- CTA ---------- */
   .cta-section{text-align:left;}
@@ -218,19 +217,32 @@
     <div class="container">
       <div class="section-head">
         <h2>Frais de mise en service</h2>
-        <p>Facturés une fois, à part des mensualités. Ils couvrent le déploiement, la configuration et un premier test de restauration documenté sur votre parc.</p>
+        <p>Facturés une fois, à part des mensualités. Ils couvrent le déploiement, la configuration et un premier test de restauration documenté sur votre parc. Une base par tranche, plus un montant par poste.</p>
       </div>
-      <table class="fee-table">
-        <thead>
-          <tr><th scope="col">Nombre de postes</th><th scope="col">Frais de mise en service</th></tr>
-        </thead>
-        <tbody>
-          <tr><th scope="row">1 à 10 postes</th><td>300&nbsp;€</td></tr>
-          <tr><th scope="row">11 à 25 postes</th><td>450&nbsp;€</td></tr>
-          <tr><th scope="row">26 à 50 postes</th><td>700&nbsp;€</td></tr>
-          <tr><th scope="row">Au-delà de 50 postes</th><td>Sur devis</td></tr>
-        </tbody>
-      </table>
+      <ul class="fee-formula-list">
+        <li class="fee-formula-item">
+          <div class="fee-formula-head">
+            <span class="fee-tier">1 à 10 postes</span>
+            <span class="fee-formula">150&nbsp;€ + 15&nbsp;€/poste</span>
+          </div>
+          <p class="fee-examples">Exemples : 5 postes → 225&nbsp;€ &middot; 10 postes → 300&nbsp;€</p>
+        </li>
+        <li class="fee-formula-item">
+          <div class="fee-formula-head">
+            <span class="fee-tier">11 à 25 postes</span>
+            <span class="fee-formula">300&nbsp;€ + 10&nbsp;€/poste au-delà de 10</span>
+          </div>
+          <p class="fee-examples">Exemple : 25 postes → 450&nbsp;€</p>
+        </li>
+        <li class="fee-formula-item">
+          <div class="fee-formula-head">
+            <span class="fee-tier">26 à 50 postes</span>
+            <span class="fee-formula">450&nbsp;€ + 10&nbsp;€/poste au-delà de 25</span>
+          </div>
+          <p class="fee-examples">Exemple : 50 postes → 700&nbsp;€</p>
+        </li>
+      </ul>
+      <p class="note" style="margin-top:8px;">Au-delà de 50 postes : sur devis.</p>
     </div>
   </section>
 
