@@ -6,6 +6,7 @@ COPY default.conf /etc/nginx/conf.d/default.conf
 # Partiels partagés
 COPY header.html /usr/share/nginx/html/header.html
 COPY footer.html /usr/share/nginx/html/footer.html
+COPY calc-widget.html /usr/share/nginx/html/calc-widget.html
 
 # Pages du site
 COPY nixiam-landing.html /usr/share/nginx/html/index.html
