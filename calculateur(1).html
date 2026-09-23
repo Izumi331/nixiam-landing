@@ -1,0 +1,289 @@
+<!DOCTYPE html>
+<html lang="fr">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Calculateur de prix — Nixiam</title>
+<meta name="description" content="Estimez en quelques secondes le coût de votre sauvegarde Essentiel ou Business avec Nixiam, selon le nombre de postes ou d'utilisateurs.">
+<meta property="og:type" content="website">
+<meta property="og:url" content="https://nixiam.fr/calculateur.html">
+<meta property="og:title" content="Calculateur de prix — Nixiam">
+<meta property="og:description" content="Estimez en quelques secondes le coût de votre sauvegarde Essentiel ou Business avec Nixiam.">
+<meta property="og:image" content="https://nixiam.fr/og-image.png">
+<meta property="og:locale" content="fr_FR">
+<meta name="twitter:card" content="summary_large_image">
+<meta name="twitter:title" content="Calculateur de prix — Nixiam">
+<meta name="twitter:description" content="Estimez en quelques secondes le coût de votre sauvegarde Essentiel ou Business avec Nixiam.">
+<meta name="twitter:image" content="https://nixiam.fr/og-image.png">
+<link rel="icon" type="image/svg+xml" href="/favicon.svg">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Space+Grotesk:wght@500;600;700&family=Inter:wght@400;500;600;700&display=swap" rel="stylesheet">
+<style>
+  *{box-sizing:border-box; margin:0; padding:0;}
+  body{
+    font-family:'Inter',sans-serif; color:#2E2C36; background:#F7F6FA; line-height:1.6;
+    -webkit-font-smoothing:antialiased;
+  }
+  h1,h2,h3{font-family:'Space Grotesk',sans-serif; font-weight:600; letter-spacing:-0.01em;}
+  main{max-width:860px; margin:0 auto; padding:56px 24px 96px;}
+  h1{font-size:clamp(28px,4vw,38px); color:#241634; margin-bottom:10px;}
+  .intro{font-size:16px; color:#6B6577; max-width:600px; margin-bottom:40px;}
+
+  .tabs{display:flex; gap:8px; margin-bottom:32px; background:#E3E1E9; padding:5px; border-radius:11px; max-width:360px;}
+  .tab-btn{
+    flex:1; padding:11px 0; border:none; background:transparent; border-radius:8px;
+    font-family:'Inter',sans-serif; font-weight:600; font-size:14.5px; color:#6B6577; cursor:pointer;
+    transition:background .15s ease, color .15s ease;
+  }
+  .tab-btn.active{background:#fff; color:#4E366A; box-shadow:0 1px 2px rgba(36,22,52,0.08);}
+
+  .calc-card{
+    background:#fff; border:1px solid #E3E1E9; border-radius:16px; padding:32px;
+  }
+  .field-group{margin-bottom:26px;}
+  .field-group label{
+    display:block; font-size:13.5px; font-weight:600; color:#241634; margin-bottom:10px;
+  }
+  .field-group input[type="number"]{
+    width:100%; max-width:200px; font-family:'Inter',sans-serif; font-size:16px;
+    padding:11px 14px; border-radius:8px; border:1px solid #E3E1E9; background:#F7F6FA; color:#2E2C36;
+  }
+  .field-group input[type="number"]:focus{outline:2px solid #12A594; outline-offset:1px;}
+  .radio-row{display:flex; flex-wrap:wrap; gap:10px;}
+  .radio-chip{
+    position:relative;
+  }
+  .radio-chip input{position:absolute; opacity:0; width:100%; height:100%; margin:0; cursor:pointer;}
+  .radio-chip span{
+    display:block; font-size:13.5px; padding:10px 16px; border-radius:99px; border:1px solid #E3E1E9;
+    color:#48566B; background:#F7F6FA; transition:all .15s ease; white-space:nowrap;
+  }
+  .radio-chip input:checked + span{
+    border-color:#0F7A6E; background:#E9F6F4; color:#0F7A6E; font-weight:600;
+  }
+  .radio-chip input:focus-visible + span{outline:2px solid #12A594; outline-offset:2px;}
+
+  .result{
+    margin-top:8px; background:#241634; border-radius:14px; padding:28px 32px; color:#fff;
+  }
+  .result .over-limit{font-size:15px; color:#EADEF5; line-height:1.6;}
+  .result-grid{display:flex; gap:32px; flex-wrap:wrap;}
+  .result-block .label{font-size:12.5px; color:#B5B0C0; text-transform:none;}
+  .result-block .value{font-family:'Space Grotesk',sans-serif; font-size:30px; font-weight:600; color:#fff; margin-top:4px;}
+  .result-block .value small{font-size:15px; font-weight:500; color:#B5B0C0;}
+  .result-note{margin-top:18px; font-size:13px; color:#948FA0; line-height:1.6; border-top:1px solid rgba(255,255,255,0.12); padding-top:16px;}
+
+  .cta-row{margin-top:24px; display:flex; gap:14px; flex-wrap:wrap;}
+  .btn{
+    display:inline-flex; align-items:center; font-family:'Inter',sans-serif; font-weight:600; font-size:14.5px;
+    padding:13px 24px; border-radius:8px; text-decoration:none; transition:transform .15s ease;
+  }
+  .btn:hover{transform:translateY(-1px);}
+  .btn-primary{background:#0F7A6E; color:#fff;}
+  .btn-ghost{border:1px solid #E3E1E9; color:#2E2C36; background:#fff;}
+
+  .disclaimer{margin-top:32px; font-size:12.5px; color:#948FA0; line-height:1.6;}
+
+  [data-panel]{display:none;}
+  [data-panel].active{display:block;}
+</style>
+</head>
+<body>
+<!--#include virtual="/header.html" -->
+
+<main>
+  <h1>Calculateur de prix</h1>
+  <p class="intro">Une estimation immédiate, sans engagement — les tarifs définitifs sont confirmés à la signature.</p>
+
+  <div class="tabs" role="tablist">
+    <button class="tab-btn active" id="tabEssentiel" role="tab" aria-selected="true">Essentiel</button>
+    <button class="tab-btn" id="tabBusiness" role="tab" aria-selected="false">Business</button>
+  </div>
+
+  <div class="calc-card">
+
+    <!-- ============ ESSENTIEL ============ -->
+    <div data-panel="essentiel" class="active">
+      <div class="field-group">
+        <label for="ePostes">Nombre de postes de travail</label>
+        <input type="number" id="ePostes" min="1" value="5" inputmode="numeric">
+      </div>
+      <div class="field-group">
+        <label>Volume de sauvegarde estimé, par poste</label>
+        <div class="radio-row" id="eVolume">
+          <label class="radio-chip"><input type="radio" name="eVol" value="50" checked><span>Jusqu'à 50 Go</span></label>
+          <label class="radio-chip"><input type="radio" name="eVol" value="150"><span>50 à 150 Go</span></label>
+          <label class="radio-chip"><input type="radio" name="eVol" value="300"><span>150 à 300 Go</span></label>
+        </div>
+      </div>
+
+      <div class="result" id="eResult"></div>
+    </div>
+
+    <!-- ============ BUSINESS ============ -->
+    <div data-panel="business">
+      <div class="field-group">
+        <label for="bUsers">Nombre d'utilisateurs Microsoft 365 / Google Workspace</label>
+        <input type="number" id="bUsers" min="1" value="10" inputmode="numeric">
+      </div>
+      <div class="field-group">
+        <label>Rétention souhaitée</label>
+        <div class="radio-row" id="bRetention">
+          <label class="radio-chip"><input type="radio" name="bRet" value="1" checked><span>1 an (inclus)</span></label>
+          <label class="radio-chip"><input type="radio" name="bRet" value="3"><span>3 ans (+0,80€/utilisateur)</span></label>
+          <label class="radio-chip"><input type="radio" name="bRet" value="illimitee"><span>Illimitée (+1,50€/utilisateur)</span></label>
+        </div>
+      </div>
+
+      <div class="result" id="bResult"></div>
+    </div>
+
+  </div>
+
+  <p class="disclaimer">
+    Estimation indicative basée sur la grille tarifaire en vigueur, hors options avancées (restauration instantanée, fréquence de sauvegarde personnalisée, conformité renforcée — nous consulter). Le frais de mise en service est facturé une seule fois, en plus de l'abonnement mensuel.
+  </p>
+</main>
+
+<!--#include virtual="/footer.html" -->
+
+<script>
+  // ---- Grilles tarifaires validées ----
+  const ESSENTIEL = {
+    tranches: [
+      { max: 10,  label: '1 à 10 postes',  prices: { 50: 12.50, 150: 18.50, 300: 33.50 } },
+      { max: 25,  label: '11 à 25 postes', prices: { 50: 11.25, 150: 16.65, 300: 30.15 } },
+      { max: 50,  label: '26 à 50 postes', prices: { 50: 10.60, 150: 15.70, 300: 28.50 } },
+    ],
+  };
+
+  const BUSINESS = {
+    tranches: [
+      { max: 10,  label: '1 à 10 utilisateurs',   price: 6.90 },
+      { max: 25,  label: '11 à 25 utilisateurs',  price: 6.20 },
+      { max: 50,  label: '26 à 50 utilisateurs',  price: 5.50 },
+      { max: 100, label: '51 à 100 utilisateurs', price: 4.90 },
+    ],
+  };
+
+  // Frais de mise en service : base + montant dégressif par unité, calculé précisément
+  // (pas juste par palier) pour rester proportionné même pour un tout petit client.
+  function setupEssentiel(n) {
+    if (n <= 10) return 150 + 15 * n;
+    if (n <= 25) return 300 + 10 * (n - 10);
+    if (n <= 50) return 450 + 10 * (n - 25);
+    return null; // sur devis
+  }
+  function setupBusiness(n) {
+    if (n <= 10) return 150 + 20 * n;
+    if (n <= 25) return 350 + 10 * (n - 10);
+    if (n <= 50) return 500 + 12 * (n - 25);
+    return null; // sur devis (51-100 aussi, pas encore chiffré)
+  }
+
+  const fmt = (n) => n.toLocaleString('fr-FR', { minimumFractionDigits: 2, maximumFractionDigits: 2 }) + ' €';
+
+  function findTranche(tranches, count) {
+    return tranches.find(t => count <= t.max) || null; // null => hors grille, sur devis
+  }
+
+  function renderEssentiel() {
+    const postes = Math.max(1, parseInt(document.getElementById('ePostes').value || '1', 10));
+    const vol = document.querySelector('input[name="eVol"]:checked').value;
+    const box = document.getElementById('eResult');
+    const tranche = findTranche(ESSENTIEL.tranches, postes);
+
+    if (!tranche) {
+      box.innerHTML = `<p class="over-limit">Au-delà de 50 postes, votre volume dépasse notre grille standard — nous vous préparons un devis sur mesure.</p>
+        <div class="cta-row"><a href="/contact.html" class="btn btn-primary">Demander un devis</a></div>`;
+      return;
+    }
+
+    const unitPrice = tranche.prices[vol];
+    const monthly = unitPrice * postes;
+    const setup = setupEssentiel(postes);
+    const setupText = setup !== null ? fmt(setup) : 'Sur devis';
+
+    box.innerHTML = `
+      <div class="result-grid">
+        <div class="result-block">
+          <div class="label">Abonnement mensuel</div>
+          <div class="value">${fmt(monthly)} <small>/ mois</small></div>
+        </div>
+        <div class="result-block">
+          <div class="label">Mise en service (une fois)</div>
+          <div class="value">${setupText}</div>
+        </div>
+      </div>
+      <div class="result-note">${tranche.label} · ${fmt(unitPrice)} / poste / mois · rétention 1 an, restauration sur demande, conformité 3-2-1 incluse.</div>
+      <div class="cta-row"><a href="/contact.html" class="btn btn-primary">Être recontacté·e</a><a href="/offre-essentiel.html" class="btn btn-ghost">Voir le détail de l'offre</a></div>
+    `;
+  }
+
+  function renderBusiness() {
+    const users = Math.max(1, parseInt(document.getElementById('bUsers').value || '1', 10));
+    const ret = document.querySelector('input[name="bRet"]:checked').value;
+    const box = document.getElementById('bResult');
+    const tranche = findTranche(BUSINESS.tranches, users);
+
+    if (!tranche) {
+      box.innerHTML = `<p class="over-limit">Au-delà de 100 utilisateurs, nous vous préparons un tarif dégressif sur mesure.</p>
+        <div class="cta-row"><a href="/contact.html" class="btn btn-primary">Demander un devis</a></div>`;
+      return;
+    }
+
+    let retentionAddon = 0;
+    let retentionLabel = 'rétention 1 an incluse';
+    if (ret === '3') { retentionAddon = 0.80; retentionLabel = 'rétention 3 ans'; }
+    if (ret === 'illimitee') { retentionAddon = 1.50; retentionLabel = 'rétention illimitée'; }
+
+    const unitPrice = tranche.price + retentionAddon;
+    const monthly = unitPrice * users;
+    const setup = setupBusiness(users);
+    const setupText = setup !== null ? fmt(setup) : 'Sur devis';
+
+    box.innerHTML = `
+      <div class="result-grid">
+        <div class="result-block">
+          <div class="label">Abonnement mensuel</div>
+          <div class="value">${fmt(monthly)} <small>/ mois</small></div>
+        </div>
+        <div class="result-block">
+          <div class="label">Mise en service (une fois)</div>
+          <div class="value">${setupText}</div>
+        </div>
+      </div>
+      <div class="result-note">${tranche.label} · ${fmt(unitPrice)} / utilisateur / mois · ${retentionLabel} · test de restauration trimestriel documenté · conformité 3-2-1 incluse.</div>
+      <div class="cta-row"><a href="/contact.html" class="btn btn-primary">Être recontacté·e</a><a href="/offre-business.html" class="btn btn-ghost">Voir le détail de l'offre</a></div>
+    `;
+  }
+
+  // ---- Tabs ----
+  const tabEssentiel = document.getElementById('tabEssentiel');
+  const tabBusiness = document.getElementById('tabBusiness');
+  const panelEssentiel = document.querySelector('[data-panel="essentiel"]');
+  const panelBusiness = document.querySelector('[data-panel="business"]');
+
+  tabEssentiel.addEventListener('click', () => {
+    tabEssentiel.classList.add('active'); tabEssentiel.setAttribute('aria-selected','true');
+    tabBusiness.classList.remove('active'); tabBusiness.setAttribute('aria-selected','false');
+    panelEssentiel.classList.add('active'); panelBusiness.classList.remove('active');
+  });
+  tabBusiness.addEventListener('click', () => {
+    tabBusiness.classList.add('active'); tabBusiness.setAttribute('aria-selected','true');
+    tabEssentiel.classList.remove('active'); tabEssentiel.setAttribute('aria-selected','false');
+    panelBusiness.classList.add('active'); panelEssentiel.classList.remove('active');
+  });
+
+  // ---- Live updates ----
+  document.getElementById('ePostes').addEventListener('input', renderEssentiel);
+  document.querySelectorAll('input[name="eVol"]').forEach(el => el.addEventListener('change', renderEssentiel));
+  document.getElementById('bUsers').addEventListener('input', renderBusiness);
+  document.querySelectorAll('input[name="bRet"]').forEach(el => el.addEventListener('change', renderBusiness));
+
+  renderEssentiel();
+  renderBusiness();
+</script>
+</body>
+</html>
