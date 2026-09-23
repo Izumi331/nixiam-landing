@@ -13,6 +13,9 @@ COPY mentions-legales.html /usr/share/nginx/html/mentions-legales.html
 COPY politique-confidentialite.html /usr/share/nginx/html/politique-confidentialite.html
 COPY contact.html /usr/share/nginx/html/contact.html
 COPY comment-ca-marche.html /usr/share/nginx/html/comment-ca-marche.html
+COPY offre-essentiel.html /usr/share/nginx/html/offre-essentiel.html
+COPY offre-business.html /usr/share/nginx/html/offre-business.html
+COPY tarifs.html /usr/share/nginx/html/tarifs.html
 COPY 404.html /usr/share/nginx/html/404.html
 
 # Autres assets

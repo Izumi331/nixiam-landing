@@ -1,0 +1,252 @@
+<!DOCTYPE html>
+<html lang="fr">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Essentiel — Sauvegarde des postes de travail — Nixiam</title>
+<meta name="description" content="L'offre Essentiel de Nixiam : sauvegarde quotidienne des postes de travail, rétention 1 an, conformité 3-2-1 incluse. Tarifs par volume et par nombre de postes.">
+<meta property="og:type" content="website">
+<meta property="og:url" content="https://nixiam.fr/offre-essentiel.html">
+<meta property="og:title" content="Essentiel — Sauvegarde des postes de travail — Nixiam">
+<meta property="og:description" content="L'offre Essentiel de Nixiam : sauvegarde quotidienne des postes de travail, rétention 1 an, conformité 3-2-1 incluse. Tarifs par volume et par nombre de postes.">
+<meta property="og:image" content="https://nixiam.fr/og-image.png">
+<meta property="og:locale" content="fr_FR">
+<meta name="twitter:card" content="summary_large_image">
+<meta name="twitter:title" content="Essentiel — Sauvegarde des postes de travail — Nixiam">
+<meta name="twitter:description" content="L'offre Essentiel de Nixiam : sauvegarde quotidienne des postes de travail, rétention 1 an, conformité 3-2-1 incluse. Tarifs par volume et par nombre de postes.">
+<meta name="twitter:image" content="https://nixiam.fr/og-image.png">
+<link rel="icon" type="image/svg+xml" href="/favicon.svg">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Space+Grotesk:wght@500;600;700&family=Inter:wght@400;500;600;700&display=swap" rel="stylesheet">
+<style>
+  :root{
+    --violet:#4E366A;
+    --indigo:#241634;
+    --lavande:#EADEF5;
+    --mauve:#8E7EC8;
+    --ardoise:#48566B;
+    --vert-fonce:#0F7A6E;
+    --vert:#12A594;
+    --menthe:#3ED6C0;
+    --corail:#C2413F;
+    --blanc:#F7F6FA;
+    --gris-clair:#E3E1E9;
+    --gris-moyen:#6B6577;
+    --gris-fonce:#2E2C36;
+  }
+  *{box-sizing:border-box; margin:0; padding:0;}
+  html{scroll-behavior:smooth;}
+  body{
+    font-family:'Inter',sans-serif;
+    color:var(--gris-fonce);
+    background:var(--blanc);
+    line-height:1.6;
+    -webkit-font-smoothing:antialiased;
+  }
+  h1,h2,h3,.display{
+    font-family:'Space Grotesk',sans-serif;
+    font-weight:600;
+    letter-spacing:-0.01em;
+  }
+  a{color:inherit;}
+  .container{max-width:1080px; margin:0 auto; padding:0 24px;}
+  section{padding:88px 0;}
+  .section-head{max-width:680px; margin-bottom:40px;}
+  .section-head h1{font-size:clamp(30px,4.4vw,44px);}
+  .section-head h2{font-size:clamp(26px,3.4vw,34px);}
+  .section-head p{margin-top:14px; font-size:16.5px; color:var(--ardoise);}
+
+  .btn{
+    display:inline-flex; align-items:center; gap:8px;
+    font-family:'Inter',sans-serif; font-weight:600; font-size:17px;
+    padding:18px 36px; border-radius:10px;
+    border:1px solid transparent;
+    cursor:pointer; text-decoration:none;
+    transition:transform .15s ease, background .15s ease;
+  }
+  .btn:focus-visible{outline:2px solid var(--menthe); outline-offset:3px;}
+  .btn-primary{background:var(--vert-fonce); color:#fff;}
+  .btn-primary:hover{background:var(--vert); transform:translateY(-1px);}
+
+  /* ---------- HERO ---------- */
+  .page-hero{background:var(--indigo); color:#fff; padding:80px 0 72px;}
+  .page-hero .section-head{margin-bottom:0;}
+  .page-hero h1{color:#fff;}
+  .page-hero .section-head p{color:var(--lavande);}
+  .page-hero .tag{
+    display:inline-block; font-size:11px; font-weight:700; letter-spacing:0.08em;
+    text-transform:uppercase; padding:4px 10px; border-radius:99px;
+    background:var(--vert-fonce); color:#fff; margin-bottom:16px;
+  }
+
+  /* ---------- INCLUS (liste non séquentielle) ---------- */
+  .feature-list{list-style:none; display:grid; grid-template-columns:1fr 1fr; gap:14px 32px; max-width:820px;}
+  .feature-list li{
+    font-size:15.5px; color:var(--gris-fonce); padding-left:28px; position:relative;
+  }
+  .feature-list li::before{
+    content:"✓"; position:absolute; left:0; top:0; color:var(--vert-fonce); font-weight:700;
+  }
+
+  /* ---------- TARIFS (grille = tableau, deux dimensions) ---------- */
+  .price-table-wrap{overflow-x:auto; margin-top:8px;}
+  table.price-table{width:100%; border-collapse:collapse; min-width:560px; font-size:15px;}
+  table.price-table caption{text-align:left; font-size:13px; color:var(--gris-moyen); margin-bottom:10px;}
+  table.price-table th, table.price-table td{padding:14px 16px; text-align:left; border-bottom:1px solid var(--gris-clair);}
+  table.price-table thead th{
+    font-family:'Space Grotesk',sans-serif; font-size:13px; font-weight:600;
+    color:var(--violet); background:var(--lavande);
+  }
+  table.price-table thead th:first-child{border-top-left-radius:10px;}
+  table.price-table thead th:last-child{border-top-right-radius:10px;}
+  table.price-table tbody th{
+    font-family:'Space Grotesk',sans-serif; font-size:14px; font-weight:600; color:var(--indigo);
+    background:#fff;
+  }
+  table.price-table tbody td{background:#fff; color:var(--gris-fonce);}
+  table.price-table tbody td .unit{display:block; font-size:12px; color:var(--gris-moyen); font-weight:400;}
+  .note{
+    margin-top:24px; max-width:680px; padding:18px 22px; border-radius:10px;
+    background:var(--lavande); color:var(--indigo); font-size:15px;
+  }
+
+  /* ---------- FRAIS DE MISE EN SERVICE ---------- */
+  .fees-section{background:#fff;}
+  table.fee-table{width:100%; border-collapse:collapse; max-width:640px; font-size:15px;}
+  table.fee-table th, table.fee-table td{padding:13px 16px; text-align:left; border-bottom:1px solid var(--gris-clair);}
+  table.fee-table thead th{
+    font-family:'Space Grotesk',sans-serif; font-size:13px; font-weight:600;
+    color:var(--violet); background:var(--lavande);
+  }
+  table.fee-table thead th:first-child{border-top-left-radius:10px;}
+  table.fee-table thead th:last-child{border-top-right-radius:10px;}
+
+  /* ---------- CTA ---------- */
+  .cta-section{text-align:left;}
+  .cta-section .section-head{margin-bottom:28px;}
+
+  @media (max-width:760px){
+    section{padding:64px 0;}
+    .page-hero{padding:56px 0 52px;}
+    .feature-list{grid-template-columns:1fr;}
+  }
+  @media (prefers-reduced-motion:reduce){
+    html{scroll-behavior:auto;}
+    *{animation:none !important; transition:none !important;}
+  }
+</style>
+</head>
+<body>
+<!--#include virtual="/header.html" -->
+
+<main>
+  <!-- ================= HERO ================= -->
+  <div class="page-hero">
+    <div class="container">
+      <div class="section-head">
+        <span class="tag">Essentiel</span>
+        <h1>Sauvegarde des postes de travail</h1>
+        <p>Pour les entreprises qui veulent protéger les ordinateurs de leurs équipes — pas les boîtes mail ni le cloud collaboratif. Si vous cherchez aussi à couvrir Microsoft 365 ou Google Workspace, voyez l'offre <a href="/offre-business.html" style="color:#fff; text-decoration:underline;">Business</a>.</p>
+      </div>
+    </div>
+  </div>
+
+  <!-- ================= INCLUS ================= -->
+  <section id="inclus">
+    <div class="container">
+      <div class="section-head">
+        <h2>Ce qui est inclus</h2>
+        <p>Une formule simple, pensée pour les postes fixes et portables de vos équipes.</p>
+      </div>
+      <ul class="feature-list">
+        <li>Sauvegarde automatisée quotidienne</li>
+        <li>Rétention 1 an</li>
+        <li>Restauration sur demande</li>
+        <li>Rapport mensuel automatique</li>
+        <li>Conformité 3-2-1 (copie hors site incluse par défaut)</li>
+      </ul>
+    </div>
+  </section>
+
+  <!-- ================= TARIFS ================= -->
+  <section class="fees-section" id="tarifs">
+    <div class="container">
+      <div class="section-head">
+        <h2>Tarifs</h2>
+        <p>Le prix par poste dépend du volume de données à sauvegarder et du nombre total de postes couverts. Tarifs mensuels, hors frais de mise en service.</p>
+      </div>
+      <div class="price-table-wrap">
+        <table class="price-table">
+          <caption>Prix par poste et par mois (HT), selon le volume par poste et le nombre de postes</caption>
+          <thead>
+            <tr>
+              <th scope="col">Volume par poste</th>
+              <th scope="col">1 à 10 postes</th>
+              <th scope="col">11 à 25 postes</th>
+              <th scope="col">26 à 50 postes</th>
+            </tr>
+          </thead>
+          <tbody>
+            <tr>
+              <th scope="row">Jusqu'à 50 Go</th>
+              <td>12,50&nbsp;€<span class="unit">/poste/mois</span></td>
+              <td>11,25&nbsp;€<span class="unit">/poste/mois</span></td>
+              <td>10,60&nbsp;€<span class="unit">/poste/mois</span></td>
+            </tr>
+            <tr>
+              <th scope="row">50 à 150 Go</th>
+              <td>18,50&nbsp;€<span class="unit">/poste/mois</span></td>
+              <td>16,65&nbsp;€<span class="unit">/poste/mois</span></td>
+              <td>15,70&nbsp;€<span class="unit">/poste/mois</span></td>
+            </tr>
+            <tr>
+              <th scope="row">150 à 300 Go</th>
+              <td>33,50&nbsp;€<span class="unit">/poste/mois</span></td>
+              <td>30,15&nbsp;€<span class="unit">/poste/mois</span></td>
+              <td>28,50&nbsp;€<span class="unit">/poste/mois</span></td>
+            </tr>
+          </tbody>
+        </table>
+      </div>
+      <p class="note">Au-delà de 50 postes ou de 300 Go par poste : sur devis.</p>
+    </div>
+  </section>
+
+  <!-- ================= FRAIS DE MISE EN SERVICE ================= -->
+  <section id="mise-en-service">
+    <div class="container">
+      <div class="section-head">
+        <h2>Frais de mise en service</h2>
+        <p>Facturés une fois, à part des mensualités. Ils couvrent le déploiement, la configuration et un premier test de restauration documenté sur votre parc.</p>
+      </div>
+      <table class="fee-table">
+        <thead>
+          <tr><th scope="col">Nombre de postes</th><th scope="col">Frais de mise en service</th></tr>
+        </thead>
+        <tbody>
+          <tr><th scope="row">1 à 10 postes</th><td>300&nbsp;€</td></tr>
+          <tr><th scope="row">11 à 25 postes</th><td>450&nbsp;€</td></tr>
+          <tr><th scope="row">26 à 50 postes</th><td>700&nbsp;€</td></tr>
+          <tr><th scope="row">Au-delà de 50 postes</th><td>Sur devis</td></tr>
+        </tbody>
+      </table>
+    </div>
+  </section>
+
+  <!-- ================= CTA ================= -->
+  <section class="cta-section" id="contact">
+    <div class="container">
+      <div class="section-head">
+        <h2>Combien de postes avez-vous à protéger&nbsp;?</h2>
+        <p>Dites-nous votre situation, on vous répond avec un tarif précis, pas une fourchette.</p>
+      </div>
+      <a href="/contact.html" class="btn btn-primary">Remplir le formulaire — 2 minutes</a>
+    </div>
+  </section>
+</main>
+
+<!--#include virtual="/footer.html" -->
+
+</body>
+</html>

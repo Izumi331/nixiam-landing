@@ -1,0 +1,211 @@
+<!DOCTYPE html>
+<html lang="fr">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Tarifs — Nixiam</title>
+<meta name="description" content="Les tarifs Nixiam en un coup d'œil : sauvegarde des postes de travail (Essentiel) et de Microsoft 365 / Google Workspace (Business), par volume et par nombre d'utilisateurs.">
+<meta property="og:type" content="website">
+<meta property="og:url" content="https://nixiam.fr/tarifs.html">
+<meta property="og:title" content="Tarifs — Nixiam">
+<meta property="og:description" content="Les tarifs Nixiam en un coup d'œil : sauvegarde des postes de travail (Essentiel) et de Microsoft 365 / Google Workspace (Business), par volume et par nombre d'utilisateurs.">
+<meta property="og:image" content="https://nixiam.fr/og-image.png">
+<meta property="og:locale" content="fr_FR">
+<meta name="twitter:card" content="summary_large_image">
+<meta name="twitter:title" content="Tarifs — Nixiam">
+<meta name="twitter:description" content="Les tarifs Nixiam en un coup d'œil : sauvegarde des postes de travail (Essentiel) et de Microsoft 365 / Google Workspace (Business), par volume et par nombre d'utilisateurs.">
+<meta name="twitter:image" content="https://nixiam.fr/og-image.png">
+<link rel="icon" type="image/svg+xml" href="/favicon.svg">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Space+Grotesk:wght@500;600;700&family=Inter:wght@400;500;600;700&display=swap" rel="stylesheet">
+<style>
+  :root{
+    --violet:#4E366A;
+    --indigo:#241634;
+    --lavande:#EADEF5;
+    --mauve:#8E7EC8;
+    --ardoise:#48566B;
+    --vert-fonce:#0F7A6E;
+    --vert:#12A594;
+    --menthe:#3ED6C0;
+    --corail:#C2413F;
+    --blanc:#F7F6FA;
+    --gris-clair:#E3E1E9;
+    --gris-moyen:#6B6577;
+    --gris-fonce:#2E2C36;
+  }
+  *{box-sizing:border-box; margin:0; padding:0;}
+  html{scroll-behavior:smooth;}
+  body{
+    font-family:'Inter',sans-serif;
+    color:var(--gris-fonce);
+    background:var(--blanc);
+    line-height:1.6;
+    -webkit-font-smoothing:antialiased;
+  }
+  h1,h2,h3,.display{
+    font-family:'Space Grotesk',sans-serif;
+    font-weight:600;
+    letter-spacing:-0.01em;
+  }
+  a{color:inherit;}
+  .container{max-width:1080px; margin:0 auto; padding:0 24px;}
+  section{padding:88px 0;}
+  .section-head{max-width:680px; margin-bottom:40px;}
+  .section-head h1{font-size:clamp(30px,4.4vw,44px);}
+  .section-head h2{font-size:clamp(24px,3vw,30px);}
+  .section-head p{margin-top:14px; font-size:16.5px; color:var(--ardoise);}
+
+  .btn{
+    display:inline-flex; align-items:center; gap:8px;
+    font-family:'Inter',sans-serif; font-weight:600; font-size:17px;
+    padding:18px 36px; border-radius:10px;
+    border:1px solid transparent;
+    cursor:pointer; text-decoration:none;
+    transition:transform .15s ease, background .15s ease;
+  }
+  .btn:focus-visible{outline:2px solid var(--menthe); outline-offset:3px;}
+  .btn-primary{background:var(--vert-fonce); color:#fff;}
+  .btn-primary:hover{background:var(--vert); transform:translateY(-1px);}
+  .btn-ghost{
+    background:transparent; color:var(--indigo); border-color:var(--gris-clair); font-size:14.5px; padding:10px 18px;
+  }
+  .btn-ghost:hover{border-color:var(--violet); color:var(--violet);}
+
+  /* ---------- HERO ---------- */
+  .page-hero{background:var(--indigo); color:#fff; padding:80px 0 72px;}
+  .page-hero .section-head{margin-bottom:0;}
+  .page-hero h1{color:#fff;}
+  .page-hero .section-head p{color:var(--lavande);}
+
+  /* ---------- DEUX BLOCS CÔTE À CÔTE ---------- */
+  .plans-grid{display:grid; grid-template-columns:1fr 1fr; gap:28px; align-items:start;}
+  .plan-card{
+    border-radius:16px; border:1px solid var(--gris-clair); background:#fff; padding:32px; overflow:hidden;
+  }
+  .plan-card.business{border-color:var(--violet);}
+  .plan-tag{
+    display:inline-block; font-size:11px; font-weight:700; letter-spacing:0.08em;
+    text-transform:uppercase; padding:4px 10px; border-radius:99px;
+    background:var(--lavande); color:var(--violet); margin-bottom:14px;
+  }
+  .plan-card.business .plan-tag{background:var(--vert-fonce); color:#fff;}
+  .plan-card h2{font-size:22px; color:var(--indigo);}
+  .plan-card .plan-sub{margin-top:6px; font-size:14px; color:var(--gris-moyen);}
+
+  table.mini-price{width:100%; border-collapse:collapse; margin-top:22px; font-size:14px;}
+  table.mini-price th, table.mini-price td{padding:10px 10px; text-align:left; border-bottom:1px solid var(--gris-clair);}
+  table.mini-price thead th{
+    font-family:'Space Grotesk',sans-serif; font-size:12px; font-weight:600;
+    color:var(--violet); background:var(--lavande);
+  }
+  table.mini-price tbody th{font-weight:600; color:var(--indigo); font-size:13px;}
+  table.mini-price td{color:var(--gris-fonce);}
+  .plan-card .plan-fee{margin-top:18px; font-size:13.5px; color:var(--gris-moyen);}
+  .plan-card .plan-fee strong{color:var(--gris-fonce);}
+  .plan-card .plan-link{display:inline-block; margin-top:20px;}
+
+  .note{
+    margin-top:32px; max-width:820px; padding:20px 24px; border-radius:10px;
+    background:var(--lavande); color:var(--indigo); font-size:15px;
+  }
+
+  /* ---------- CTA ---------- */
+  .cta-section{background:var(--indigo); color:#fff; text-align:left;}
+  .cta-section .section-head h2{color:#fff;}
+  .cta-section .section-head p{color:var(--lavande);}
+  .cta-section .section-head{margin-bottom:28px;}
+
+  @media (max-width:820px){
+    .plans-grid{grid-template-columns:1fr;}
+  }
+  @media (max-width:760px){
+    section{padding:64px 0;}
+    .page-hero{padding:56px 0 52px;}
+  }
+  @media (prefers-reduced-motion:reduce){
+    html{scroll-behavior:auto;}
+    *{animation:none !important; transition:none !important;}
+  }
+</style>
+</head>
+<body>
+<!--#include virtual="/header.html" -->
+
+<main>
+  <!-- ================= HERO ================= -->
+  <div class="page-hero">
+    <div class="container">
+      <div class="section-head">
+        <h1>Tarifs</h1>
+        <p>Deux offres, deux logiques de tarification. Essentiel se calcule par poste, selon le volume à sauvegarder. Business se calcule par utilisateur Microsoft 365 ou Google Workspace.</p>
+      </div>
+    </div>
+  </div>
+
+  <!-- ================= DEUX GRILLES ================= -->
+  <section id="grilles">
+    <div class="container">
+      <div class="plans-grid">
+        <!-- Essentiel -->
+        <div class="plan-card">
+          <span class="plan-tag">Essentiel</span>
+          <h2>Postes de travail</h2>
+          <p class="plan-sub">Prix par poste et par mois (HT), selon le volume par poste et le nombre de postes.</p>
+          <table class="mini-price">
+            <thead>
+              <tr><th scope="col">Volume / poste</th><th scope="col">1-10</th><th scope="col">11-25</th><th scope="col">26-50</th></tr>
+            </thead>
+            <tbody>
+              <tr><th scope="row">≤ 50 Go</th><td>12,50&nbsp;€</td><td>11,25&nbsp;€</td><td>10,60&nbsp;€</td></tr>
+              <tr><th scope="row">50-150 Go</th><td>18,50&nbsp;€</td><td>16,65&nbsp;€</td><td>15,70&nbsp;€</td></tr>
+              <tr><th scope="row">150-300 Go</th><td>33,50&nbsp;€</td><td>30,15&nbsp;€</td><td>28,50&nbsp;€</td></tr>
+            </tbody>
+          </table>
+          <p class="plan-fee">Frais de mise en service (une fois) : <strong>300&nbsp;€</strong> à <strong>700&nbsp;€</strong> selon le nombre de postes. Au-delà de 50 postes ou 300 Go : sur devis.</p>
+          <a href="/offre-essentiel.html" class="btn btn-ghost plan-link">Voir le détail de l'offre Essentiel</a>
+        </div>
+
+        <!-- Business -->
+        <div class="plan-card business">
+          <span class="plan-tag">Business</span>
+          <h2>Microsoft 365 / Google Workspace</h2>
+          <p class="plan-sub">Prix par utilisateur et par mois (HT), selon le nombre d'utilisateurs.</p>
+          <table class="mini-price">
+            <thead>
+              <tr><th scope="col">Utilisateurs</th><th scope="col">Prix / mois</th></tr>
+            </thead>
+            <tbody>
+              <tr><th scope="row">1 à 10</th><td>6,90&nbsp;€/utilisateur</td></tr>
+              <tr><th scope="row">11 à 25</th><td>6,20&nbsp;€/utilisateur</td></tr>
+              <tr><th scope="row">26 à 50</th><td>5,50&nbsp;€/utilisateur</td></tr>
+              <tr><th scope="row">51 à 100</th><td>4,90&nbsp;€/utilisateur</td></tr>
+              <tr><th scope="row">100 et plus</th><td>Sur devis</td></tr>
+            </tbody>
+          </table>
+          <p class="plan-fee">Rétention 1 an incluse, extensible à 3 ans (+0,80&nbsp;€/utilisateur/mois) ou illimitée (+1,50&nbsp;€/utilisateur/mois). Frais de mise en service (une fois) : <strong>350&nbsp;€</strong> à <strong>800&nbsp;€</strong> selon le nombre d'utilisateurs. Au-delà de 100 utilisateurs : sur devis.</p>
+          <a href="/offre-business.html" class="btn btn-ghost plan-link">Voir le détail de l'offre Business</a>
+        </div>
+      </div>
+
+      <p class="note">Ces tarifs sont indicatifs pour un démarrage début 2027 — confirmés à la signature. Options avancées (restauration instantanée, fréquence personnalisée, conformité renforcée) : nous consulter.</p>
+    </div>
+  </section>
+
+  <!-- ================= CTA ================= -->
+  <section class="cta-section" id="contact">
+    <div class="container">
+      <div class="section-head">
+        <h2>Un besoin qui ne rentre pas dans les cases&nbsp;?</h2>
+        <p>Parc mixte, plus de 50 postes, plus de 100 utilisateurs, conformité renforcée : décrivez-nous votre situation.</p>
+      </div>
+      <a href="/contact.html" class="btn btn-primary">Remplir le formulaire — 2 minutes</a>
+    </div>
+  </section>
+</main>
+
+<!--#include virtual="/footer.html" -->
+
+</body>
+</html>
