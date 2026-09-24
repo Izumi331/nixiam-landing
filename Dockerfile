@@ -18,6 +18,7 @@ COPY offre-essentiel.html /usr/share/nginx/html/offre-essentiel.html
 COPY offre-business.html /usr/share/nginx/html/offre-business.html
 COPY tarifs.html /usr/share/nginx/html/tarifs.html
 COPY calculateur.html /usr/share/nginx/html/calculateur.html
+COPY faq.html /usr/share/nginx/html/faq.html
 COPY 404.html /usr/share/nginx/html/404.html
 
 # Autres assets

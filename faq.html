@@ -1,0 +1,197 @@
+<!DOCTYPE html>
+<html lang="fr">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Questions fréquentes — Nixiam</title>
+<meta name="description" content="Les réponses aux questions fréquentes sur Nixiam : sauvegarde Microsoft 365, localisation des données, démarrage, résiliation, changement de palier, incidents et restaurations.">
+<meta property="og:type" content="website">
+<meta property="og:url" content="https://nixiam.fr/faq.html">
+<meta property="og:title" content="Questions fréquentes — Nixiam">
+<meta property="og:description" content="Les réponses aux questions fréquentes sur Nixiam : sauvegarde Microsoft 365, localisation des données, démarrage, résiliation, changement de palier, incidents et restaurations.">
+<meta property="og:image" content="https://nixiam.fr/og-image.png">
+<meta property="og:locale" content="fr_FR">
+<meta name="twitter:card" content="summary_large_image">
+<meta name="twitter:title" content="Questions fréquentes — Nixiam">
+<meta name="twitter:description" content="Les réponses aux questions fréquentes sur Nixiam : sauvegarde Microsoft 365, localisation des données, démarrage, résiliation, changement de palier, incidents et restaurations.">
+<meta name="twitter:image" content="https://nixiam.fr/og-image.png">
+<link rel="icon" type="image/svg+xml" href="/favicon.svg">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Space+Grotesk:wght@500;600;700&family=Inter:wght@400;500;600;700&display=swap" rel="stylesheet">
+<style>
+  :root{
+    --violet:#4E366A;
+    --indigo:#241634;
+    --lavande:#EADEF5;
+    --mauve:#8E7EC8;
+    --ardoise:#48566B;
+    --vert-fonce:#0F7A6E;
+    --vert:#12A594;
+    --menthe:#3ED6C0;
+    --corail:#C2413F;
+    --blanc:#F7F6FA;
+    --gris-clair:#E3E1E9;
+    --gris-moyen:#6B6577;
+    --gris-fonce:#2E2C36;
+  }
+  *{box-sizing:border-box; margin:0; padding:0;}
+  html{scroll-behavior:smooth;}
+  body{
+    font-family:'Inter',sans-serif;
+    color:var(--gris-fonce);
+    background:var(--blanc);
+    line-height:1.6;
+    -webkit-font-smoothing:antialiased;
+  }
+  h1,h2,h3,.display{
+    font-family:'Space Grotesk',sans-serif;
+    font-weight:600;
+    letter-spacing:-0.01em;
+  }
+  a{color:inherit;}
+  .container{max-width:1080px; margin:0 auto; padding:0 24px;}
+  section{padding:88px 0;}
+  .section-head{max-width:680px; margin-bottom:40px;}
+  .section-head h1{font-size:clamp(30px,4.4vw,44px);}
+  .section-head h2{font-size:clamp(26px,3.4vw,34px);}
+  .section-head p{margin-top:14px; font-size:16.5px; color:var(--ardoise);}
+
+  .btn{
+    display:inline-flex; align-items:center; gap:8px;
+    font-family:'Inter',sans-serif; font-weight:600; font-size:17px;
+    padding:18px 36px; border-radius:10px;
+    border:1px solid transparent;
+    cursor:pointer; text-decoration:none;
+    transition:transform .15s ease, background .15s ease;
+  }
+  .btn:focus-visible{outline:2px solid var(--menthe); outline-offset:3px;}
+  .btn-primary{background:var(--vert-fonce); color:#fff;}
+  .btn-primary:hover{background:var(--vert); transform:translateY(-1px);}
+
+  /* ---------- HERO ---------- */
+  .page-hero{background:var(--indigo); color:#fff; padding:80px 0 72px;}
+  .page-hero .section-head{margin-bottom:0;}
+  .page-hero h1{color:#fff;}
+  .page-hero .section-head p{color:var(--lavande);}
+
+  /* ---------- FAQ (questions dépliables, sans JS) ---------- */
+  .client-section{background:#fff;}
+  .faq-list{max-width:760px; border-top:1px solid var(--gris-clair);}
+  .faq-item{border-bottom:1px solid var(--gris-clair);}
+  .faq-item summary{
+    list-style:none; cursor:pointer; position:relative;
+    padding:20px 40px 20px 0;
+    font-family:'Space Grotesk',sans-serif; font-size:17px; font-weight:600; color:var(--indigo);
+  }
+  .faq-item summary::-webkit-details-marker{display:none;}
+  .faq-item summary::after{
+    content:"+"; position:absolute; right:4px; top:50%; transform:translateY(-50%);
+    font-size:22px; font-weight:500; color:var(--violet);
+  }
+  .faq-item[open] summary::after{content:"−";}
+  .faq-item summary:focus-visible{outline:2px solid var(--menthe); outline-offset:3px; border-radius:4px;}
+  .faq-item p{padding:0 40px 22px 0; font-size:15.5px; color:var(--ardoise);}
+  .faq-item a{color:var(--vert-fonce); font-weight:600;}
+
+  /* ---------- CTA ---------- */
+  .cta-section{text-align:left;}
+  .cta-section .section-head{margin-bottom:28px;}
+  .reassurance{margin-top:16px; font-size:13.5px; color:var(--gris-moyen);}
+
+  @media (max-width:760px){
+    section{padding:64px 0;}
+    .page-hero{padding:56px 0 52px;}
+    .faq-item summary{font-size:16px;}
+  }
+  @media (prefers-reduced-motion:reduce){
+    html{scroll-behavior:auto;}
+    *{animation:none !important; transition:none !important;}
+  }
+</style>
+</head>
+<body>
+<!--#include virtual="/header.html" -->
+
+<main>
+  <!-- ================= HERO ================= -->
+  <div class="page-hero">
+    <div class="container">
+      <div class="section-head">
+        <h1>Questions fréquentes</h1>
+        <p>Ce qu'on nous demande avant de signer, et ce qu'il faut savoir une fois client. Une question qui n'est pas ici&nbsp;? Écrivez-nous à <a href="mailto:contact@nixiam.fr" style="color:#fff; text-decoration:underline;">contact@nixiam.fr</a>.</p>
+      </div>
+    </div>
+  </div>
+
+  <!-- ================= AVANT DE SIGNER ================= -->
+  <section id="avant-de-signer">
+    <div class="container">
+      <div class="section-head">
+        <h2>Avant de signer</h2>
+      </div>
+      <div class="faq-list">
+        <details class="faq-item">
+          <summary>Microsoft 365 ne sauvegarde-t-il pas déjà mes données&nbsp;?</summary>
+          <p>Non. Microsoft garantit la disponibilité du service, pas la récupération d'un email supprimé ou d'un fichier chiffré par un rançongiciel. C'est ce que couvre l'offre <a href="/offre-business.html">Business</a> — et il en va de même pour Google Workspace.</p>
+        </details>
+        <details class="faq-item">
+          <summary>Où sont mes données&nbsp;?</summary>
+          <p>Chez notre partenaire Acronis, sur des infrastructures certifiées en Europe — jamais sur nos propres serveurs. Nixiam est intégrateur, pas hébergeur&nbsp;: <a href="/comment-ca-marche.html">voir comment ça marche</a>.</p>
+        </details>
+        <details class="faq-item">
+          <summary>Combien de temps pour démarrer&nbsp;?</summary>
+          <p>Rapidement&nbsp;: le délai dépend du nombre de postes ou d'utilisateurs à configurer. On vous donne une date précise dès qu'on connaît votre environnement.</p>
+        </details>
+      </div>
+    </div>
+  </section>
+
+  <!-- ================= UNE FOIS CLIENT ================= -->
+  <section class="client-section" id="une-fois-client">
+    <div class="container">
+      <div class="section-head">
+        <h2>Une fois client</h2>
+      </div>
+      <div class="faq-list">
+        <details class="faq-item">
+          <summary>Comment résilier et récupérer mes données&nbsp;?</summary>
+          <p>Vous pouvez résilier à tout moment, avec 30 jours de préavis. L'export complet de vos données est garanti dans les 30 jours suivant la résiliation.</p>
+        </details>
+        <details class="faq-item">
+          <summary>Comment changer de palier (Essentiel vers Business, ou de tranche)&nbsp;?</summary>
+          <p><a href="/contact.html">Contactez-nous</a>&nbsp;: le changement s'applique au mois suivant. Les grilles sont détaillées sur la page <a href="/tarifs.html">Tarifs</a>.</p>
+        </details>
+        <details class="faq-item">
+          <summary>Que se passe-t-il en cas d'incident ou de rançongiciel&nbsp;?</summary>
+          <p>Contactez-nous immédiatement par email à <a href="mailto:contact@nixiam.fr">contact@nixiam.fr</a>. Nous vous accompagnons dans la restauration.</p>
+        </details>
+        <details class="faq-item">
+          <summary>Comment demander une restauration&nbsp;?</summary>
+          <p>Par email à <a href="mailto:contact@nixiam.fr">contact@nixiam.fr</a>, en précisant les fichiers ou la période concernée.</p>
+        </details>
+        <details class="faq-item">
+          <summary>Que contient le rapport mensuel (Essentiel) ou trimestriel (Business)&nbsp;?</summary>
+          <p>La confirmation que vos sauvegardes ont bien été effectuées sur la période. Pour l'offre Business, il inclut en plus le résultat du test de restauration trimestriel documenté&nbsp;: ce qui a été restauré, et comment.</p>
+        </details>
+      </div>
+    </div>
+  </section>
+
+  <!-- ================= CTA ================= -->
+  <section class="cta-section" id="contact">
+    <div class="container">
+      <div class="section-head">
+        <h2>Une autre question&nbsp;?</h2>
+        <p>Décrivez-nous votre situation, on vous répond franchement — y compris si Nixiam n'est pas la bonne solution pour vous.</p>
+      </div>
+      <a href="/contact.html" class="btn btn-primary">Remplir le formulaire — 2 minutes</a>
+      <p class="reassurance">✓ Réponse sous 24h ouvrées · ✓ Données hébergées en Europe · ✓ Sans engagement, résiliable à tout moment (30 jours de préavis)</p>
+    </div>
+  </section>
+</main>
+
+<!--#include virtual="/footer.html" -->
+
+</body>
+</html>
