@@ -41,6 +41,8 @@ There is no shared stylesheet: each page duplicates the CSS custom-property pale
 
 Each public page's `<head>` carries: unique `<title>` and meta description, `<link rel="canonical">` with its exact `https://nixiam.fr/...` URL, and Open Graph/Twitter tags including `og:site_name`. The home page has an `Organization` JSON-LD (`@id` `https://nixiam.fr/#org`); both offer pages have a `Service` JSON-LD referencing it — keep their price ranges in sync with the grids.
 
+`faq.html` has a `FAQPage` JSON-LD in its `<head>` that must match the visible Q&A **word for word** (Google penalizes a mismatch). Whenever a `<details class="faq-item">` is added, removed, reordered or reworded, regenerate the whole JSON-LD block from the page markup — take each `<summary>` text as `name` and its `<p>` text (plain text, no HTML, whitespace collapsed) as `acceptedAnswer.text` — rather than editing it by hand. Then check that the JSON parses and that the entry count and texts match the visible `<details>`.
+
 ## Pricing — duplicated in several places
 
 The price grids and setup-fee formulas are hardcoded in **five** places that must stay consistent: `offre-essentiel.html`, `offre-business.html`, `tarifs.html`, `calculateur.html` (JS `ESSENTIEL` / `BUSINESS` / `setup*`), and `calc-widget.html` (same JS, duplicated), plus the JSON-LD price ranges on the offer pages. Beyond 50 postes / 50 users (monthly price and setup fee) is "sur devis" everywhere.
