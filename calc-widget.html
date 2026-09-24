@@ -273,6 +273,7 @@
       secteur: '',
       solution: `Calculateur — ${lastCalc.offre} : ${lastCalc.summary} · Estimation ${fmt(lastCalc.monthly)}/mois${lastCalc.setup!==null ? ' + ' + fmt(lastCalc.setup) + ' mise en service' : ''}`,
       regle321: 'Non renseigné',
+      offre: lastCalc.offre.toLowerCase(),
       website: document.getElementById('cwWebsite').value,
     };
 
