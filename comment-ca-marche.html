@@ -5,7 +5,9 @@
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
 <title>Comment ça marche — Nixiam</title>
 <meta name="description" content="Nixiam est intégrateur, pas hébergeur : nous choisissons, déployons, supervisons et restaurons vos sauvegardes sur l'infrastructure d'Acronis. La règle 3-2-1 appliquée, et des restaurations testées et documentées.">
+<link rel="canonical" href="https://nixiam.fr/comment-ca-marche.html">
 <meta property="og:type" content="website">
+<meta property="og:site_name" content="Nixiam">
 <meta property="og:url" content="https://nixiam.fr/comment-ca-marche.html">
 <meta property="og:title" content="Comment ça marche — Nixiam">
 <meta property="og:description" content="Nixiam est intégrateur, pas hébergeur : nous choisissons, déployons, supervisons et restaurons vos sauvegardes sur l'infrastructure d'Acronis. La règle 3-2-1 appliquée, et des restaurations testées et documentées.">
@@ -74,6 +76,9 @@
   .page-hero .section-head{margin-bottom:0;}
   .page-hero h1{color:#fff;}
   .page-hero .section-head p{color:var(--lavande);}
+  .hero-cta{margin-top:28px; display:flex; gap:12px; flex-wrap:wrap;}
+  .btn-outline-light{background:transparent; color:#fff; border-color:rgba(255,255,255,0.35);}
+  .btn-outline-light:hover{background:rgba(255,255,255,0.08);}
 
   /* ---------- CARDS ---------- */
   .steps{position:relative; display:grid; grid-template-columns:repeat(4,1fr); gap:20px; list-style:none;}
@@ -123,6 +128,8 @@
   }
   .diff-card h3{font-size:18px; color:#fff; margin:6px 0 8px;}
   .diff-card p{font-size:14.5px; color:var(--lavande);}
+  .diff-links{margin-top:28px; font-size:15.5px; color:var(--lavande);}
+  .diff-links a{color:var(--menthe); font-weight:600;}
 
   /* ---------- CTA ---------- */
   .cta-section{text-align:left;}
@@ -156,6 +163,10 @@
       <div class="section-head">
         <h1>Une sauvegarde, c'est bien. Une restauration prouvée, c'est mieux.</h1>
         <p>Voici, sans jargon, ce que fait Nixiam, sur quoi reposent vos données et comment on vérifie que tout fonctionne le jour où vous en avez besoin.</p>
+      </div>
+      <div class="hero-cta">
+        <a href="/calculateur.html" class="btn btn-primary" data-open-calc="">Estimer mon prix</a>
+        <a href="/contact.html" class="btn btn-outline-light">Être recontacté</a>
       </div>
     </div>
   </div>
@@ -242,6 +253,7 @@
           <p>Offre Business : rétention 1 an, extensible. Offre Essentiel : sauvegarde quotidienne, rétention 1 an, rapport mensuel automatique.</p>
         </div>
       </div>
+      <p class="diff-links">Voir le détail des offres&nbsp;: <a href="/offre-essentiel.html">Essentiel</a> (postes de travail) · <a href="/offre-business.html">Business</a> (Microsoft 365 / Google Workspace)</p>
     </div>
   </section>
 

@@ -5,7 +5,9 @@
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
 <title>Contact — Nixiam</title>
 <meta name="description" content="Contactez Nixiam : décrivez votre situation de sauvegarde en 2 minutes et nous revenons vers vous rapidement, sans démarchage agressif.">
+<link rel="canonical" href="https://nixiam.fr/contact.html">
 <meta property="og:type" content="website">
+<meta property="og:site_name" content="Nixiam">
 <meta property="og:url" content="https://nixiam.fr/contact.html">
 <meta property="og:title" content="Contact — Nixiam">
 <meta property="og:description" content="Contactez Nixiam : décrivez votre situation de sauvegarde en 2 minutes et nous revenons vers vous rapidement, sans démarchage agressif.">
@@ -158,8 +160,7 @@
               <option>1 à 10</option>
               <option>11 à 25</option>
               <option>26 à 50</option>
-              <option>51 à 100</option>
-              <option>Plus de 100</option>
+              <option>Plus de 50</option>
             </select>
           </div>
           <div class="field">
@@ -186,6 +187,7 @@
           <input type="text" id="website" name="website" tabindex="-1" autocomplete="off" value="">
         </div>
         <input type="hidden" id="regle321" name="regle321" value="">
+        <input type="hidden" id="offre" name="offre" value="">
         <div class="submit-row">
           <button type="submit" class="btn btn-primary">Être recontacté·e</button>
         </div>
@@ -219,6 +221,10 @@
   const regle321Input = document.getElementById('regle321');
   // Réponse au quiz 3-2-1 de l'accueil, transmise via ?regle321=...
   regle321Input.value = new URLSearchParams(window.location.search).get('regle321') || '';
+  // Offre consultée avant d'arriver ici, transmise via ?offre=essentiel|business
+  const offreInput = document.getElementById('offre');
+  const offreParam = new URLSearchParams(window.location.search).get('offre');
+  offreInput.value = ['essentiel', 'business'].includes(offreParam) ? offreParam : '';
   // ---- form submit -> persist as shared lead ----
   const form = document.getElementById('leadForm');
   const formCard = document.getElementById('formCard');
@@ -251,6 +257,7 @@
       secteur: document.getElementById('secteur').value,
       solution: (form.querySelector('input[name="solution"]:checked') || {}).value || 'Non renseigné',
       regle321: regle321Input.value || 'Non renseigné',
+      offre: offreInput.value || 'Non renseigné',
       email: emailInput.value.trim(),
       website: document.getElementById('website').value,
     };

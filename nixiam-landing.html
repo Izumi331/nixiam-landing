@@ -5,16 +5,18 @@
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
 <title>Nixiam — Vos données sont sauvegardées. Reste à prouver qu'elles se restaurent.</title>
 <link rel="icon" type="image/svg+xml" href="/favicon.svg">
-<meta name="description" content="Sauvegarde et restauration des données pour PME — Microsoft 365, Google Workspace et postes de travail. Nixiam, intégrateur en France, teste vos restaurations chaque trimestre.">
+<meta name="description" content="Sauvegarde et restauration des données pour PME — Microsoft 365, Google Workspace et postes de travail. Nixiam, intégrateur en France, teste vos restaurations chaque trimestre (offre Business).">
+<link rel="canonical" href="https://nixiam.fr/">
 <meta property="og:type" content="website">
+<meta property="og:site_name" content="Nixiam">
 <meta property="og:url" content="https://nixiam.fr/">
 <meta property="og:title" content="Nixiam — Vos données sont sauvegardées. Reste à prouver qu'elles se restaurent.">
-<meta property="og:description" content="Sauvegarde et restauration des données pour PME — Microsoft 365, Google Workspace et postes de travail. Nixiam, intégrateur en France, teste vos restaurations chaque trimestre.">
+<meta property="og:description" content="Sauvegarde et restauration des données pour PME — Microsoft 365, Google Workspace et postes de travail. Nixiam, intégrateur en France, teste vos restaurations chaque trimestre (offre Business).">
 <meta property="og:image" content="https://nixiam.fr/og-image.png">
 <meta property="og:locale" content="fr_FR">
 <meta name="twitter:card" content="summary_large_image">
 <meta name="twitter:title" content="Nixiam — Vos données sont sauvegardées. Reste à prouver qu'elles se restaurent.">
-<meta name="twitter:description" content="Sauvegarde et restauration des données pour PME — Microsoft 365, Google Workspace et postes de travail. Nixiam, intégrateur en France, teste vos restaurations chaque trimestre.">
+<meta name="twitter:description" content="Sauvegarde et restauration des données pour PME — Microsoft 365, Google Workspace et postes de travail. Nixiam, intégrateur en France, teste vos restaurations chaque trimestre (offre Business).">
 <meta name="twitter:image" content="https://nixiam.fr/og-image.png">
 <link rel="preconnect" href="https://fonts.googleapis.com">
 <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
@@ -170,6 +172,13 @@
     content:"✓"; position:absolute; left:0; color:var(--vert-fonce); font-weight:700;
   }
   .offer-card.reco li::before{color:var(--menthe);}
+  .offer-card{position:relative; transition:transform .15s ease;}
+  .offer-card:hover{transform:translateY(-2px);}
+  .offer-link{display:inline-block; margin-top:22px; font-size:14.5px; font-weight:600; color:var(--vert-fonce); text-decoration:none;}
+  .offer-card.reco .offer-link{color:var(--menthe);}
+  .offer-link::after{content:""; position:absolute; inset:0; border-radius:14px;}
+  .offer-link:focus-visible{outline:none;}
+  .offer-link:focus-visible::after{outline:2px solid var(--menthe); outline-offset:3px;}
 
   /* ---------- FORM ---------- */
   .form-section{background:var(--indigo); color:#fff;}
@@ -188,6 +197,28 @@
     *{animation:none !important; transition:none !important;}
   }
 </style>
+<script type="application/ld+json">
+{
+  "@context": "https://schema.org",
+  "@type": "Organization",
+  "@id": "https://nixiam.fr/#org",
+  "name": "Nixiam",
+  "legalName": "Nixiam SAS",
+  "url": "https://nixiam.fr/",
+  "logo": "https://nixiam.fr/og-image.png",
+  "email": "contact@nixiam.fr",
+  "vatID": "FR33130074388",
+  "taxID": "13007438800013",
+  "address": {
+    "@type": "PostalAddress",
+    "streetAddress": "76 impasse Bardy",
+    "postalCode": "46230",
+    "addressLocality": "Lalbenque",
+    "addressCountry": "FR"
+  },
+  "areaServed": "FR"
+}
+</script>
 </head>
 <body>
 <!--#include virtual="/header.html" -->
@@ -213,7 +244,7 @@
       <a href="#regle" class="btn btn-ghost">Connaissez-vous la règle 3-2-1&nbsp;?</a>
     </div>
     <div class="proof-strip">
-      <p><strong>Trimestriel</strong> — test de restauration documenté</p>
+      <p><strong>Trimestriel</strong> — test de restauration documenté (offre Business)</p>
       <p><strong>Europe</strong> — infrastructures certifiées, jamais chez nous</p>
     </div>
   </div>
@@ -297,6 +328,7 @@
           <li>Restauration sur demande</li>
           <li>Rapport mensuel automatique</li>
         </ul>
+        <a href="/offre-essentiel.html" class="offer-link">Voir l'offre Essentiel →</a>
       </div>
       <div class="offer-card reco">
         <span class="offer-tag">Recommandé</span>
@@ -307,6 +339,7 @@
           <li>Test de restauration trimestriel documenté</li>
           <li>Support par email, réponse sous 4h ouvrées</li>
         </ul>
+        <a href="/offre-business.html" class="offer-link">Voir l'offre Business →</a>
       </div>
     </div>
   </div>

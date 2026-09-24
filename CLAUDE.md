@@ -4,47 +4,54 @@ This file provides guidance to Claude Code (claude.ai/code) when working with co
 
 ## What this is
 
-Static marketing site for Nixiam (backup/restore services for SMBs — Microsoft 365, Google Workspace, servers, workstations). Plain HTML/CSS/JS, no build tooling, no package manager, no framework. Content and copy are in French.
+Static marketing site for Nixiam (backup/restore services for SMBs). The offer is deliberately limited to **workstations (Essentiel)** and **Microsoft 365 / Google Workspace (Business)** — no server backup; don't reintroduce "serveurs" in copy. Plain HTML/CSS/JS, no build tooling, no package manager, no framework. Content and copy are in French.
 
 ## Running locally
 
-There's no build step. Two ways to preview:
-
-- Build and run the Docker image (matches production serving behavior, including SSI includes):
-  ```
-  docker build -t nixiam-landing .
-  docker run --rm -p 8080:80 nixiam-landing
-  ```
-- Or serve the directory with any static server that supports SSI if you need header/footer includes to resolve; opening the HTML files directly in a browser will NOT render the `<!--#include virtual="..." -->` directives.
+There's no build step. Build and run the Docker image (matches production serving behavior, including SSI includes):
+```
+docker build -t nixiam-landing .
+docker run --rm -p 8080:80 nixiam-landing
+```
+Opening the HTML files directly in a browser will NOT render the `<!--#include virtual="..." -->` directives.
 
 There is no lint/test/build command — this is hand-written static HTML.
 
-## Deployment architecture
+## Deployment
 
-`Dockerfile` builds an `nginx:alpine` image: `default.conf` enables SSI (`ssi on;`) and serves everything from `/usr/share/nginx/html`. `nixiam-landing.html` is copied in as `index.html`. 404s route to `404.html`.
+- `Dockerfile` builds an `nginx:alpine` image and copies **each file explicitly** — a new page must be added to the `Dockerfile` (and to `sitemap.xml`) or it won't be served.
+- `nixiam-landing.html` is copied in as `index.html` (served at `/`).
+- `default.conf` enables SSI (`ssi on;`), routes 404s to `404.html`, and marks the partials (`header.html`, `footer.html`, `calc-widget.html`) `internal` so they only resolve through SSI includes, not by direct URL.
+- Production runs on this host as the container `nixiam-landing` (`--restart unless-stopped -p 8080:80`). Before replacing it, test the new image on a separate container/port.
 
-## Page structure — two different patterns in this repo
+## Pages
 
-- **Sub-pages** (`mentions-legales.html`, `politique-confidentialite.html`, `404.html`) pull in the shared chrome via nginx SSI:
-  ```
-  <!--#include virtual="/header.html" -->
-  ...
-  <!--#include virtual="/footer.html" -->
-  ```
-  `header.html` and `footer.html` contain their own `<style>` blocks and are self-contained partials — edit them once and every page that includes them updates.
-- **The homepage** (`nixiam-landing.html`) does **not** use the shared includes. It has its own inline hero/nav markup and its own inline `<footer>`, styled by its own `<style>` block in `<head>`. If you change the shared nav/footer (colors, links, logo), you must also update `nixiam-landing.html` separately or it will drift out of sync.
+Public pages: `nixiam-landing.html` (home), `offre-essentiel.html`, `offre-business.html`, `tarifs.html`, `calculateur.html`, `comment-ca-marche.html`, `faq.html`, `contact.html`, `mentions-legales.html`, `politique-confidentialite.html`, plus `404.html` (noindex).
 
-Each page/partial duplicates the same CSS custom-property palette (`--violet`, `--indigo`, `--lavande`, `--vert-fonce`, etc.) in its own `<style>` block rather than sharing a stylesheet — there is no shared CSS file, so palette or type changes must be applied per-file.
+**Every page, including the homepage**, pulls the shared chrome via SSI:
+```
+<!--#include virtual="/header.html" -->
+...
+<!--#include virtual="/footer.html" -->
+```
+- `header.html` / `footer.html` are self-contained partials with their own `<style>` blocks. Nav and footer links live only there.
+- `footer.html` itself includes `calc-widget.html`, so the floating price calculator ("Estimer mon prix" button + slide-in panel with lead capture) is on every page. It hides its own button on `/calculateur.html`. Any link with `data-open-calc="essentiel|business"` (or empty) opens the panel instead of navigating; give such links `href="/calculateur.html"` as a no-JS fallback.
 
-`header.html`'s nav links to `/offre-essentiel.html`, `/offre-business.html`, `/comment-ca-marche.html`, and `/tarifs.html` — none of these pages exist yet in the repo. Don't assume they're present.
+There is no shared stylesheet: each page duplicates the CSS custom-property palette (`--violet`, `--indigo`, `--lavande`, `--vert-fonce`, etc.) and its component styles in its own `<style>` block, so palette/type changes must be applied per file.
 
-## Lead capture form
+Each public page's `<head>` carries: unique `<title>` and meta description, `<link rel="canonical">` with its exact `https://nixiam.fr/...` URL, and Open Graph/Twitter tags including `og:site_name`. The home page has an `Organization` JSON-LD (`@id` `https://nixiam.fr/#org`); both offer pages have a `Service` JSON-LD referencing it — keep their price ranges in sync with the grids.
 
-`nixiam-landing.html` contains a lead form that POSTs JSON to an external API defined near the top of its `<script>` block:
+## Pricing — duplicated in several places
 
+The price grids and setup-fee formulas are hardcoded in **five** places that must stay consistent: `offre-essentiel.html`, `offre-business.html`, `tarifs.html`, `calculateur.html` (JS `ESSENTIEL` / `BUSINESS` / `setup*`), and `calc-widget.html` (same JS, duplicated), plus the JSON-LD price ranges on the offer pages. Beyond 50 postes / 50 users (monthly price and setup fee) is "sur devis" everywhere.
+
+## Lead capture
+
+Both `contact.html` (full form) and `calc-widget.html` (entreprise + email) POST JSON to:
 ```js
 const API_URL = "https://leads.nixiam.fr/api/leads";
 ```
-
-- The admin view (`?admin=1` query param) prompts for a key and GETs `${API_URL}?key=...` to render submitted leads in a table injected into the page.
-- This site has no backend of its own; the lead API is a separate service and out of scope for this repo.
+- The API is a separate service (source in `/opt/nixiam-leads/server.js`, out of scope for this repo). It **whitelists** fields: `entreprise`, `taille`, `secteur`, `solution`, `regle321`, `email`; `website` is the honeypot. Any other field is silently dropped — a new form field needs a matching change in the API to be stored.
+- `contact.html` pre-fills hidden fields from the query string: `?regle321=...` (from the home-page 3-2-1 quiz) and `?offre=essentiel|business` (from offer pages / calculator links).
+- The home page admin view (`/?admin=1`) prompts for a key and GETs `${API_URL}?key=...` to render submitted leads in a table.
+- `politique-confidentialite.html` lists the collected fields — update it when the forms change.

@@ -5,7 +5,9 @@
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
 <title>Tarifs — Nixiam</title>
 <meta name="description" content="Les tarifs Nixiam en un coup d'œil : sauvegarde des postes de travail (Essentiel) et de Microsoft 365 / Google Workspace (Business), par volume et par nombre d'utilisateurs.">
+<link rel="canonical" href="https://nixiam.fr/tarifs.html">
 <meta property="og:type" content="website">
+<meta property="og:site_name" content="Nixiam">
 <meta property="og:url" content="https://nixiam.fr/tarifs.html">
 <meta property="og:title" content="Tarifs — Nixiam">
 <meta property="og:description" content="Les tarifs Nixiam en un coup d'œil : sauvegarde des postes de travail (Essentiel) et de Microsoft 365 / Google Workspace (Business), par volume et par nombre d'utilisateurs.">
@@ -78,6 +80,9 @@
   .page-hero .section-head{margin-bottom:0;}
   .page-hero h1{color:#fff;}
   .page-hero .section-head p{color:var(--lavande);}
+  .hero-cta{margin-top:28px; display:flex; gap:12px; flex-wrap:wrap;}
+  .btn-outline-light{background:transparent; color:#fff; border-color:rgba(255,255,255,0.35);}
+  .btn-outline-light:hover{background:rgba(255,255,255,0.08);}
 
   /* ---------- DEUX BLOCS CÔTE À CÔTE ---------- */
   .plans-grid{display:grid; grid-template-columns:1fr 1fr; gap:28px; align-items:start;}
@@ -111,6 +116,19 @@
     background:var(--lavande); color:var(--indigo); font-size:15px;
   }
 
+  .calc-teaser{
+    margin-top:24px; max-width:820px; display:flex; align-items:center; justify-content:space-between;
+    gap:12px 20px; flex-wrap:wrap; padding:18px 22px; border-radius:10px;
+    border:1px solid var(--gris-clair); background:var(--blanc);
+  }
+  .calc-teaser p{font-size:15px; font-weight:600; color:var(--indigo);}
+  .calc-teaser-btn{
+    font-size:14.5px; font-weight:600; text-decoration:none; white-space:nowrap;
+    padding:10px 18px; border-radius:10px; background:var(--vert-fonce); color:#fff;
+  }
+  .calc-teaser-btn:hover{background:var(--vert);}
+  .calc-teaser-btn:focus-visible{outline:2px solid var(--menthe); outline-offset:3px;}
+
   /* ---------- CTA ---------- */
   .cta-section{background:var(--indigo); color:#fff; text-align:left;}
   .cta-section .section-head h2{color:#fff;}
@@ -141,6 +159,10 @@
       <div class="section-head">
         <h1>Tarifs</h1>
         <p>Deux offres, deux logiques de tarification. Essentiel se calcule par poste, selon le volume à sauvegarder. Business se calcule par utilisateur Microsoft 365 ou Google Workspace.</p>
+      </div>
+      <div class="hero-cta">
+        <a href="/calculateur.html" class="btn btn-primary" data-open-calc="">Estimer mon prix</a>
+        <a href="/contact.html" class="btn btn-outline-light">Être recontacté</a>
       </div>
     </div>
   </div>
@@ -181,13 +203,17 @@
               <tr><th scope="row">1 à 10</th><td>6,90&nbsp;€/utilisateur</td></tr>
               <tr><th scope="row">11 à 25</th><td>6,20&nbsp;€/utilisateur</td></tr>
               <tr><th scope="row">26 à 50</th><td>5,50&nbsp;€/utilisateur</td></tr>
-              <tr><th scope="row">51 à 100</th><td>4,90&nbsp;€/utilisateur</td></tr>
-              <tr><th scope="row">100 et plus</th><td>Sur devis</td></tr>
+              <tr><th scope="row">Plus de 50</th><td>Sur devis</td></tr>
             </tbody>
           </table>
-          <p class="plan-fee">Rétention 1 an incluse, extensible à 3 ans (+0,80&nbsp;€/utilisateur/mois) ou illimitée (+1,50&nbsp;€/utilisateur/mois). Frais de mise en service (une fois) : une base par tranche + un montant par utilisateur — <strong>250&nbsp;€</strong> pour 5 utilisateurs à <strong>800&nbsp;€</strong> pour 50 utilisateurs. Au-delà de 100 utilisateurs : sur devis.</p>
+          <p class="plan-fee">Rétention 1 an incluse, extensible à 3 ans (+0,80&nbsp;€/utilisateur/mois) ou illimitée (+1,50&nbsp;€/utilisateur/mois). Frais de mise en service (une fois) : une base par tranche + un montant par utilisateur — <strong>250&nbsp;€</strong> pour 5 utilisateurs à <strong>800&nbsp;€</strong> pour 50 utilisateurs. Au-delà de 50 utilisateurs : sur devis.</p>
           <a href="/offre-business.html" class="btn btn-ghost plan-link">Voir le détail de l'offre Business</a>
         </div>
+      </div>
+
+      <div class="calc-teaser">
+        <p>Pas envie de lire une grille&nbsp;? Estimez votre prix en 30 secondes.</p>
+        <a href="/calculateur.html" class="calc-teaser-btn" data-open-calc="">Estimer mon prix</a>
       </div>
 
       <p class="note">Ces tarifs sont indicatifs — confirmés à la signature. Options avancées (restauration instantanée, fréquence personnalisée, conformité renforcée) : nous consulter.</p>
@@ -199,7 +225,7 @@
     <div class="container">
       <div class="section-head">
         <h2>Un besoin qui ne rentre pas dans les cases&nbsp;?</h2>
-        <p>Parc mixte, plus de 50 postes, plus de 100 utilisateurs, conformité renforcée : décrivez-nous votre situation.</p>
+        <p>Parc mixte, plus de 50 postes, plus de 50 utilisateurs, conformité renforcée : décrivez-nous votre situation.</p>
       </div>
       <a href="/contact.html" class="btn btn-primary">Remplir le formulaire — 2 minutes</a>
       <p class="reassurance">✓ Réponse sous 24h ouvrées · ✓ Données hébergées en Europe · ✓ Sans engagement, résiliable à tout moment (30 jours de préavis)</p>

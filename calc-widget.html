@@ -122,6 +122,14 @@
           <label for="cwUsers">Utilisateurs M365 / Google Workspace</label>
           <input type="number" id="cwUsers" min="1" value="10">
         </div>
+        <div class="cw-field">
+          <label>Rétention souhaitée</label>
+          <div class="cw-radio-row">
+            <label class="cw-chip"><input type="radio" name="cwRet" value="1" checked><span>1 an (inclus)</span></label>
+            <label class="cw-chip"><input type="radio" name="cwRet" value="3"><span>3 ans (+0,80€)</span></label>
+            <label class="cw-chip"><input type="radio" name="cwRet" value="illimitee"><span>Illimitée (+1,50€)</span></label>
+          </div>
+        </div>
         <div class="cw-result" id="cwResultB"></div>
       </div>
 
@@ -144,7 +152,7 @@
             <button type="submit" class="cw-submit" id="cwSubmitBtn">Recevoir mon devis</button>
             <p class="cw-error" id="cwError">L'envoi a échoué — vérifiez votre connexion et réessayez.</p>
           </form>
-          <a href="/contact.html" style="display:block; text-align:center; font-size:12.5px; color:#6B6577; margin-top:14px;">ou remplir le formulaire complet</a>
+          <a href="/contact.html?offre=essentiel" id="cwFullForm" style="display:block; text-align:center; font-size:12.5px; color:#6B6577; margin-top:14px;">ou remplir le formulaire complet</a>
         </div>
         <div class="cw-success" id="cwSuccess">
           <div class="check">✓</div>
@@ -171,7 +179,6 @@
     { max: 10,  label: '1 à 10 utilisateurs',   price: 6.90 },
     { max: 25,  label: '11 à 25 utilisateurs',  price: 6.20 },
     { max: 50,  label: '26 à 50 utilisateurs',  price: 5.50 },
-    { max: 100, label: '51 à 100 utilisateurs', price: 4.90 },
   ];
   function setupEssentiel(n){ if(n<=10) return 150+15*n; if(n<=25) return 300+10*(n-10); if(n<=50) return 450+10*(n-25); return null; }
   function setupBusiness(n){ if(n<=10) return 150+20*n; if(n<=25) return 350+10*(n-10); if(n<=50) return 500+12*(n-25); return null; }
@@ -199,31 +206,55 @@
     const n = Math.max(1, parseInt(document.getElementById('cwUsers').value || '1', 10));
     const box = document.getElementById('cwResultB');
     const tranche = findTranche(BUSINESS, n);
-    if(!tranche){ box.innerHTML = '<p style="font-size:13px;color:#EADEF5;">Au-delà de 100 utilisateurs — tarif sur mesure.</p>'; lastCalc = {offre:'Business', summary:`${n} utilisateurs (sur devis)`, monthly:0, setup:null}; return; }
-    const monthly = tranche.price * n;
+    if(!tranche){ box.innerHTML = '<p style="font-size:13px;color:#EADEF5;">Au-delà de 50 utilisateurs — tarif sur mesure.</p>'; lastCalc = {offre:'Business', summary:`${n} utilisateurs (sur devis)`, monthly:0, setup:null}; return; }
+    const ret = document.querySelector('input[name="cwRet"]:checked').value;
+    let addon = 0, retLabel = 'rétention 1 an incluse';
+    if(ret === '3'){ addon = 0.80; retLabel = 'rétention 3 ans'; }
+    if(ret === 'illimitee'){ addon = 1.50; retLabel = 'rétention illimitée'; }
+    const unit = tranche.price + addon;
+    const monthly = unit * n;
     const setup = setupBusiness(n);
     box.innerHTML = `
       <div class="cw-result-row"><span class="l">Abonnement / mois</span><span class="v">${fmt(monthly)}</span></div>
       <div class="cw-result-row"><span class="l">Mise en service</span><span class="v" style="font-size:15px;">${setup!==null?fmt(setup):'Sur devis'}</span></div>
-      <div class="cw-result-note">${tranche.label} · ${fmt(tranche.price)}/utilisateur/mois · 3-2-1 inclus</div>`;
-    lastCalc = { offre:'Business', summary:`${n} utilisateurs, ${fmt(tranche.price)}/utilisateur`, monthly, setup };
+      <div class="cw-result-note">${tranche.label} · ${fmt(unit)}/utilisateur/mois · ${retLabel} · 3-2-1 inclus</div>`;
+    lastCalc = { offre:'Business', summary:`${n} utilisateurs, ${retLabel}, ${fmt(unit)}/utilisateur`, monthly, setup };
   }
 
   // Tabs
   const tabE = document.getElementById('cwTabE'), tabB = document.getElementById('cwTabB');
   const panelE = document.getElementById('cwPanelE'), panelB = document.getElementById('cwPanelB');
-  tabE.addEventListener('click', () => { tabE.classList.add('active'); tabB.classList.remove('active'); panelE.style.display='block'; panelB.style.display='none'; renderE(); });
-  tabB.addEventListener('click', () => { tabB.classList.add('active'); tabE.classList.remove('active'); panelB.style.display='block'; panelE.style.display='none'; renderB(); });
+  const fullForm = document.getElementById('cwFullForm');
+  function showE(){ tabE.classList.add('active'); tabB.classList.remove('active'); panelE.style.display='block'; panelB.style.display='none'; fullForm.href='/contact.html?offre=essentiel'; renderE(); }
+  function showB(){ tabB.classList.add('active'); tabE.classList.remove('active'); panelB.style.display='block'; panelE.style.display='none'; fullForm.href='/contact.html?offre=business'; renderB(); }
+  tabE.addEventListener('click', showE);
+  tabB.addEventListener('click', showB);
 
   document.getElementById('cwPostes').addEventListener('input', renderE);
   document.querySelectorAll('input[name="cwVol"]').forEach(el => el.addEventListener('change', renderE));
   document.getElementById('cwUsers').addEventListener('input', renderB);
+  document.querySelectorAll('input[name="cwRet"]').forEach(el => el.addEventListener('change', renderB));
 
-  // Open/close
+  // Open/close — depuis le bouton flottant, ou tout lien de la page portant data-open-calc="essentiel|business"
   const fab = document.getElementById('calcFab'), overlay = document.getElementById('calcOverlay'), closeBtn = document.getElementById('calcClose');
-  fab.addEventListener('click', () => { overlay.classList.add('open'); renderE(); });
+  function openCalc(tab){
+    overlay.classList.add('open');
+    if(tab === 'business') showB();
+    else if(tab === 'essentiel') showE();
+    else if(panelB.style.display === 'block') renderB();
+    else renderE();
+  }
+  fab.addEventListener('click', () => openCalc());
   closeBtn.addEventListener('click', () => overlay.classList.remove('open'));
   overlay.addEventListener('click', (e) => { if(e.target === overlay) overlay.classList.remove('open'); });
+  document.addEventListener('click', (e) => {
+    const trigger = e.target.closest('[data-open-calc]');
+    if(!trigger) return;
+    e.preventDefault();
+    openCalc(trigger.dataset.openCalc);
+  });
+  // Le calculateur est déjà affiché en pleine page : pas de bouton flottant en doublon.
+  if(location.pathname === '/calculateur.html') fab.style.display = 'none';
 
   // Lead capture submit
   const form = document.getElementById('cwLeadForm');

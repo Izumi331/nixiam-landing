@@ -5,7 +5,9 @@
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
 <title>Calculateur de prix — Nixiam</title>
 <meta name="description" content="Estimez en quelques secondes le coût de votre sauvegarde Essentiel ou Business avec Nixiam, selon le nombre de postes ou d'utilisateurs.">
+<link rel="canonical" href="https://nixiam.fr/calculateur.html">
 <meta property="og:type" content="website">
+<meta property="og:site_name" content="Nixiam">
 <meta property="og:url" content="https://nixiam.fr/calculateur.html">
 <meta property="og:title" content="Calculateur de prix — Nixiam">
 <meta property="og:description" content="Estimez en quelques secondes le coût de votre sauvegarde Essentiel ou Business avec Nixiam.">
@@ -163,7 +165,6 @@
       { max: 10,  label: '1 à 10 utilisateurs',   price: 6.90 },
       { max: 25,  label: '11 à 25 utilisateurs',  price: 6.20 },
       { max: 50,  label: '26 à 50 utilisateurs',  price: 5.50 },
-      { max: 100, label: '51 à 100 utilisateurs', price: 4.90 },
     ],
   };
 
@@ -179,7 +180,7 @@
     if (n <= 10) return 150 + 20 * n;
     if (n <= 25) return 350 + 10 * (n - 10);
     if (n <= 50) return 500 + 12 * (n - 25);
-    return null; // sur devis (51-100 aussi, pas encore chiffré)
+    return null; // sur devis
   }
 
   const fmt = (n) => n.toLocaleString('fr-FR', { minimumFractionDigits: 2, maximumFractionDigits: 2 }) + ' €';
@@ -196,7 +197,7 @@
 
     if (!tranche) {
       box.innerHTML = `<p class="over-limit">Au-delà de 50 postes, votre volume dépasse notre grille standard — nous vous préparons un devis sur mesure.</p>
-        <div class="cta-row"><a href="/contact.html" class="btn btn-primary">Demander un devis</a></div>`;
+        <div class="cta-row"><a href="/contact.html?offre=essentiel" class="btn btn-primary">Demander un devis</a></div>`;
       return;
     }
 
@@ -217,7 +218,7 @@
         </div>
       </div>
       <div class="result-note">${tranche.label} · ${fmt(unitPrice)} / poste / mois · rétention 1 an, restauration sur demande, conformité 3-2-1 incluse.</div>
-      <div class="cta-row"><a href="/contact.html" class="btn btn-primary">Être recontacté·e</a><a href="/offre-essentiel.html" class="btn btn-ghost">Voir le détail de l'offre</a></div>
+      <div class="cta-row"><a href="/contact.html?offre=essentiel" class="btn btn-primary">Être recontacté·e</a><a href="/offre-essentiel.html" class="btn btn-ghost">Voir le détail de l'offre</a></div>
     `;
   }
 
@@ -228,8 +229,8 @@
     const tranche = findTranche(BUSINESS.tranches, users);
 
     if (!tranche) {
-      box.innerHTML = `<p class="over-limit">Au-delà de 100 utilisateurs, nous vous préparons un tarif dégressif sur mesure.</p>
-        <div class="cta-row"><a href="/contact.html" class="btn btn-primary">Demander un devis</a></div>`;
+      box.innerHTML = `<p class="over-limit">Au-delà de 50 utilisateurs, nous vous préparons un tarif dégressif sur mesure.</p>
+        <div class="cta-row"><a href="/contact.html?offre=business" class="btn btn-primary">Demander un devis</a></div>`;
       return;
     }
 
@@ -255,7 +256,7 @@
         </div>
       </div>
       <div class="result-note">${tranche.label} · ${fmt(unitPrice)} / utilisateur / mois · ${retentionLabel} · test de restauration trimestriel documenté · conformité 3-2-1 incluse.</div>
-      <div class="cta-row"><a href="/contact.html" class="btn btn-primary">Être recontacté·e</a><a href="/offre-business.html" class="btn btn-ghost">Voir le détail de l'offre</a></div>
+      <div class="cta-row"><a href="/contact.html?offre=business" class="btn btn-primary">Être recontacté·e</a><a href="/offre-business.html" class="btn btn-ghost">Voir le détail de l'offre</a></div>
     `;
   }
 
